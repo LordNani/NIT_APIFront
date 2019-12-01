@@ -4,11 +4,11 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
     entry: {
         index: './src/index.js',
-        visual: './src/visual.js',
+        another: './src/services.js'
       },
     output: {
         path: path.resolve(__dirname, 'docs'),
-        filename: 'js/main.js',
+        filename: 'js/[name].js',
     },
     module: {
         rules: [
@@ -25,6 +25,12 @@ module.exports = {
             // ...additional rules...
         ],
     },
+
+    devServer: {
+        contentBase: path.join(__dirname, 'dist'),
+        compress: true,
+        port: 9000
+      },
 
     module: {
         rules: [

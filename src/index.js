@@ -87,6 +87,11 @@ $('.btn-buy').click(function(event) {
   minus.innerHTML = "-";
   nodeCopy.childNodes[3].childNodes[1].replaceWith(minus);
   nodeCopy.childNodes[3].appendChild(plus);
+  $("<button/>", {
+    "class": "btn btn-success btn-md plus-count",
+    text: "+"
+    })
+    .appendTo(nodeCopy.childNodes[3]);
   for (var node in nodes) {
       if (nodes[node].childNodes[3].getAttribute('data-name') == name) {
           changeCount(nodes[node], name, 1);

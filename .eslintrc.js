@@ -1,7 +1,9 @@
 module.exports = {
     "env": {
         "browser": true,
-        "es6": true
+        "commonjs": true,
+        "es6": true,
+        "jquery": true
     },
     "extends": "eslint:recommended",
     "globals": {
@@ -245,6 +247,7 @@ module.exports = {
                 "before": false
             }
         ],
+
         "semi-style": [
             "error",
             "last"
@@ -280,6 +283,6 @@ module.exports = {
         "yoda": [
             "error",
             "never"
-        ]
+        ],
     }
 };
