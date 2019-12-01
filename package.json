@@ -1,0 +1,19 @@
+{
+  "name": "nit_apifront",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LordNani/NIT_APIFront.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LordNani/NIT_APIFront/issues"
+  },
+  "homepage": "https://github.com/LordNani/NIT_APIFront#readme"
+}
