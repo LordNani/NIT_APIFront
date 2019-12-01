@@ -1,4 +1,5 @@
 console.log("Hello webpack!");
+console.log(`The time is ${new Date()}`);
 /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
 function toggleDropdown() {
