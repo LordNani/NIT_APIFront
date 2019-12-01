@@ -1,31 +1,12 @@
 console.log("Hello webpack!");
 console.log(`The time is ${new Date()}`);
 import './scss/main.scss'
-
-
-/* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
-function toggleDropdown() {
-  document.getElementById('myDropdown').classList.toggle("show");
-}
-
-// Close the dropdown menu if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.dropdownIcon')) {
-      var dropdowns = document.getElementsByClassName("dropdown-content");
-      for (var i = 0; i < dropdowns.length; i++) {
-          var openDropdown = dropdowns[i];
-          if (openDropdown.classList.contains('show')) {
-              openDropdown.classList.remove('show');
-          }
-      }
-  }
-}
-var buyButttons;
+import './scss/bootstrap/bootstrap.min.css';
+import 'bootstrap';
 
 var cart = (function() {
-  cartStorage = [];
-  nodes = [];
+    const cartStorage = [];
+    let nodes = [];
 
   function Product(name, price, count) {
       this.name = name;

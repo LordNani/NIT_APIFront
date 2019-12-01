@@ -2,7 +2,10 @@ const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-    entry: './src/index.js',
+    entry: {
+        index: './src/index.js',
+        visual: './src/visual.js',
+      },
     output: {
         path: path.resolve(__dirname, 'docs'),
         filename: 'js/main.js',
@@ -22,7 +25,7 @@ module.exports = {
             // ...additional rules...
         ],
     },
-    
+
     module: {
         rules: [
             // ...additional rules...
