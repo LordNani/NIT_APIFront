@@ -181,7 +181,7 @@ $(document).on("click", ".plus-count", function () {
 
 
 $("#dropdownImage").on("click", function () {
-    $("#myDropdown").toggle("show");
+    $("#myDropdown2").toggle("show");
 });
 
 window.onload = function () {
