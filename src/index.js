@@ -8,6 +8,8 @@ const cartStorage = [];
 const nodes = [];
 
 const itemsMap = new Map();
+const categoriesMap = new Map();
+
 
 function Product(name, price, count) {
     this.name = name;
@@ -79,10 +81,24 @@ $('.clearCart').click(function () {
 $('.btn-buy').click(function (event) {
 
     for (var [key, value] of itemsMap) {
-        console.log(key.name + ' = ' + value.length);
+        console.log(key + ' = ' + value.length);
     }
-
-
+    $.get({
+        dataType: "json",
+        url: "https://nit.tron.net.ua/api/product/list/category/" + "4",
+        success(data) {
+            // console.log(data);
+            const items = itemsMap.get("4");
+            if (items.length == 0) {
+                for (var item of data) {
+                    items.push(item);
+                    console.log(item.id + "   " + item.name + "   " + item.price + "   " + item.special_price);
+                }
+            } else {
+                console.log("Already got data of that category!");
+            }
+        }
+    });
     event.preventDefault();
     const name = $(this).parent().data('name');
     const price = Number($(this).parent().data('price'));
@@ -175,9 +191,10 @@ window.onload = function () {
         success(data) {
             console.log(data);
             for (var category of data) {
+                categoriesMap.set(category.id, category);
                 itemsMap.set(category.id, []);
             }
-            itemsMap.set()
+
             /* data.forEach(function(item) {
                console.log(item.name);
                }); */
