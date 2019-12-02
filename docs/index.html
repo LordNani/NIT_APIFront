@@ -3,12 +3,13 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
-    <link rel="stylesheet" href=".\css\main.css">
+    <link rel="stylesheet" href=".\css\index.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <div class="header">
-        <a href="main.html"><img src="./src/img/icon_website.png" class="mainIcon"></a>
+        <a href="index.html"><img src="img/icon_website.png" class="mainIcon"></a>
         <p class="current-category"><b>Main Page</b></p>
         <div class=inputBoxWrapper>
             <input type="text" placeholder="What are you looking for?" class = 'searchBar'>
@@ -22,7 +23,7 @@
         </nav>
 
         <div class="dropdown">
-            <img src="src/img/icon_dd.png" onclick='toggleDropdown()' class="dropdownIcon">
+            <img src="img/icon_dd.png" class="dropdownIcon" id = "dropdownImage">
             <div id="myDropdown" class="dropdown-content">
                 <button type="button" class="btn btn-primary btn-md open-cart" data-toggle="modal"
                     data-target="#myModal"><b>Shopping Cart</b></button>
@@ -56,7 +57,7 @@
 
     <div class="items-wrapper container">
         <div class="row justify-content-center">
-            <div class="col-8 col-md-4 col-lg-3 card">
+            <div class="col-md-5 col-lg-3 col-xs-6 col-xl-3 card">
                 <img src="https://source.unsplash.com/collection/307652/1">
                 <div class="priceWrapper" data-price="190" data-name="Product #0">
                     <input type="button" value="BUY" class="btn-buy">
@@ -65,7 +66,7 @@
                 </div>
                 <p class="item-name">Product #0 </p>
             </div>
-            <div class="col-8 col-md-4 col-lg-3 card">
+            <div class="col-md-5 col-lg-3 col-xs-6 col-xl-3 card">
                 <img src="https://source.unsplash.com/collection/307652/2">
                 <div class="priceWrapper" data-name="Product #1" data-price="40">
                     <input type="button" value="BUY" class="btn-buy">
@@ -74,7 +75,7 @@
                 </div>
                 <p class="item-name">Product #1 </p>
             </div>
-            <div class="col-8 col-md-4 col-lg-3 card">
+            <div class="col-md-5 col-lg-3 col-xs-6 col-xl-3 card">
                 <img src="https://source.unsplash.com/collection/307652/3">
                 <div class="priceWrapper" data-name="Product #2" data-price="29.99">
                     <input type="button" value="BUY" class="btn-buy">
@@ -83,7 +84,7 @@
                 </div>
                 <p class="item-name">Product #2 </p>
             </div>
-            <div class="col-8 col-md-4 col-lg-3 card">
+            <div class="col-md-5 col-lg-3 col-xs-6 col-xl-3 card">
                 <img src="https://source.unsplash.com/collection/307652/4">
                 <div class="priceWrapper" data-name="Product #3" data-price="2">
                     <input type="button" value="BUY" class="btn-buy">
@@ -92,7 +93,7 @@
                 </div>
                 <p class="item-name">Product #3 </p>
             </div>
-            <div class="col-8 col-md-4 col-lg-3 card">
+            <div class="col-md-5 col-lg-3 col-xs-6 col-xl-3 card">
                 <img src="https://source.unsplash.com/collection/307652/5">
                 <div class="priceWrapper" data-name="Product #4" data-price="1000">
                     <input type="button" value="BUY" class="btn-buy">
@@ -101,7 +102,7 @@
                 </div>
                 <p class="item-name">Product #4 </p>
             </div>
-            <div class="col-8 col-md-4 col-lg-3 card">
+            <div class="col-md-5 col-lg-3 col-xs-6 col-xl-3 card">
                 <img src="https://source.unsplash.com/collection/307652/6">
                 <div class="priceWrapper" data-name="Product #5" data-price="123">
                     <input type="button" value="BUY" class="btn-buy">
@@ -110,7 +111,7 @@
                 </div>
                 <p class="item-name">Product #5 </p>
             </div>
-            <div class="col-8 col-md-4 col-lg-3 card">
+            <div class="col-md-5 col-lg-3 col-xs-6 col-xl-3 card">
                 <img src="https://source.unsplash.com/collection/307652/7">
                 <div class="priceWrapper" data-name="Product #6" data-price="0.78">
                     <input type="button" value="BUY" class="btn-buy">
@@ -119,7 +120,7 @@
                 </div>
                 <p class="item-name">Product #6 </p>
             </div>
-            <div class="col-8 col-md-4 col-lg-3 card">
+            <div class="col-md-5 col-lg-3 col-xs-6 col-xl-3 card">
                 <img src="https://source.unsplash.com/collection/307652/8">
                 <div class="priceWrapper" data-name="Product #7" data-price="200">
                     <input type="button" value="BUY" class="btn-buy">
@@ -128,7 +129,7 @@
                 </div>
                 <p class="item-name">Product #7 </p>
             </div>
-            <div class="col-8 col-md-4 col-lg-3 card">
+            <div class="col-md-5 col-lg-3 col-xs-6 col-xl-3 card">
                 <img src="https://source.unsplash.com/collection/307652/9">
                 <div class="priceWrapper" data-name="Product #8" data-price="0.01">
                     <input type="button" value="BUY" class="btn-buy">
@@ -139,16 +140,16 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="src\js\jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src=".\js\main.js"></script>
-    <script type="text/javascript" src="src\js\bootstrap.min.js"></script>
-    <script type="text/javascript" src="src\js\jquery-ui-1.12.1\jquery-ui.min.js"></script>
+    <script type="text/javascript" src=".\js\jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src=".\js\services.js"></script>
+    <script type="text/javascript" src=".\js\index.js"></script>
+    <script type="text/javascript" src=".\js\jquery-ui-1.12.1\jquery-ui.min.js"></script>
     
 </body>
 <footer class="footer mt-auto py-3 blue">
     <div class="container-fluid text-center ">
         <span class="text-muted ">All copyright reserved to the Lord Nani</span>
-        <a href=https://t.me/fuckwatermelons target="_blank"> <img src="./src/img/icon_tg2.png"></a>
+        <a href=https://t.me/fuckwatermelons target="_blank"> <img src="img/icon_tg2.png"></a>
     </div>
 </footer>
 
