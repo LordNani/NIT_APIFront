@@ -5,6 +5,9 @@
 import './scss/bootstrap/bootstrap.min.css';
 import 'bootstrap';
 import './scss/main.scss';
+import {
+    effectBuyItem
+} from './ui.js';
 const cartStorage = [];
 const nodes = [];
 
@@ -30,7 +33,7 @@ function addProduct(node, name, price, count) {
     const newItem = new Product(name, price, count);
     // console.log(newItem.name + ' ' + newItem.price);
     cartStorage.push(newItem);
-    document.getElementById('cont1').appendChild(node);
+    $("#cart-container").append(node);
     nodes.push(node);
 }
 
@@ -81,66 +84,38 @@ $('.clearCart').click(function () {
     //console.log('Cart cleared.');
 });
 
-$('.btn-buy').click(function (event) {
-    event.preventDefault();
-    const name = $(this).parent().data('name');
-    const price = Number($(this).parent().data('price'));
-    // console.log(name);
-    const nodeCopy = event.target.parentNode.parentNode.cloneNode(true);
-    // console.log(nodeCopy.childNodes[3].childNodes[1].nodeName);
-    const minus = document.createElement('button');
-    const plus = document.createElement('button');
-    minus.className = "btn btn-danger btn-md minus-count";
-    plus.className = "btn btn-success btn-md plus-count";
-    plus.innerHTML = "+";
-    minus.innerHTML = "-";
-    nodeCopy.childNodes[3].childNodes[1].replaceWith(minus);
-    nodeCopy.childNodes[3].appendChild(plus);
+$(document).on("click", ".btn-buy", function () {
+    //console.log('clicked on button buy');
+    const name = $(this).siblings("div")[1].getAttribute('data-name');
+    const price = Number($(this).siblings("div")[1].getAttribute('data-price'));
+    //console.log(name + " " + price);
+    const nodeCopy = $(this).closest("div").clone(true);
+    const minus = jQuery('<button></button>', {
+        "class": "btn btn-danger btn-md minus-count",
+        text: "-"
+    });
+    const plus = jQuery('<button></button>', {
+        "class": "btn btn-success btn-md plus-count",
+        text: "+"
+    });
+    plus.appendTo(find("button"));
+    nodeCopy.find("button").replaceWith(minus);
+
     for (var node of nodes) {
-        if (node.childNodes[3].getAttribute('data-name') == name) {
+        if (nodeCopy.find('div').data('name') == name)
             changeCount(node, name, 1);
-        }
     }
+
     addProduct(nodeCopy, name, price, 1);
     $('.totalSum').html('Total sum: ' + totalSum() + '$');
 
+    //animating the item image flying
     const width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
     let newcart = $('.open-cart');
     if (width < 1270)
         newcart = $('.dropdownIcon');
-
-
-    const imgtodrag = $(this).parent().parent('.card').find("img").eq(0);
-    if (imgtodrag) {
-        const imgclone = imgtodrag.clone()
-            .offset({
-                top: imgtodrag.offset().top,
-                left: imgtodrag.offset().left
-            })
-            .css({
-                'opacity': '0.5',
-                'position': 'absolute',
-                'height': '200px',
-                'width': '200px',
-                'z-index': '100',
-                'border-radius': '15%'
-            })
-            .appendTo($('body'))
-            .animate({
-                'top': newcart.offset().top + 15,
-                'left': newcart.offset().left + 40,
-                'width': 0,
-                'height': 0
-            }, 1000, 'easeInOutExpo');
-
-        imgclone.animate({
-            'width': 0,
-            'height': 0
-        }, function () {
-            $(this).detach()
-        });
-    }
-
+    const imgtodrag = $(this).closest('div').find('img');
+    effectBuyItem(newcart, imgtodrag);
 });
 
 $(document).on("click", ".possibleCategory", function () {
@@ -195,25 +170,28 @@ function generateCard(itemID, img, name, price, specialPrice) {
     const wrapper =
         jQuery('<div></div>', {
             "class": "priceWrapper"
-        }).attr('data-price', price).attr('data-name', name);
+        });
+
+    wrapper.attr('data-name', name);
+    wrapper.attr('data-price', price);
 
     (jQuery('<div></div>', {
         "class": "item-name crop",
         text: name
     })).appendTo(node);
 
-    wrapper.append(jQuery('<p></p>', {
-        "class": "newPrice",
-        text: specialPrice
-    }));
-
     if (specialPrice !== null) {
+        wrapper.attr('data-price', specialPrice);
         wrapper.append(jQuery('<p></p>', {
-            "class": "oldPrice",
-            text: price
+            "class": "newPrice",
+            text: specialPrice
         }));
     }
 
+    wrapper.append(jQuery('<p></p>', {
+        "class": "oldPrice",
+        text: price
+    }));
     wrapper.appendTo(node);
 
     jQuery('<input>', {
@@ -226,8 +204,6 @@ function generateCard(itemID, img, name, price, specialPrice) {
 }
 
 $(document).on("click", ".minus-count", function () {
-
-
     //console.log('minus content');
 
     const name = $(this).parent().data('name');
