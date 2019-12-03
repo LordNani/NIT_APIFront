@@ -170,7 +170,7 @@ function setCategory(id, name) {
 
 function generateCard(itemID, img, name, price, specialPrice) {
     const node = jQuery('<div></div>', {
-        "class": "col-md-5 col-lg-3 col-xs-6 col-xl-3 card ",
+        "class": "col-md-5 col-lg-3 col-xs-6 col-xl-3 card "
     });
     node.attr('data-id', itemID);
     jQuery('<img>', {
