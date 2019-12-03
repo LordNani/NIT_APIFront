@@ -7,10 +7,10 @@ export function effectBuyItem(cartImg, imgToDrag) {
                 left: imgToDrag.offset().left
             })
             .css({
-                'opacity': '0.5',
+                'opacity': '0.2',
                 'position': 'absolute',
-                'height': '200px',
-                'width': '200px',
+                'height': imgToDrag.height(),
+                'width': imgToDrag.width(),
                 'z-index': '100',
                 'border-radius': '15%'
             })

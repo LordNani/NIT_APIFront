@@ -24,14 +24,8 @@ function Product(name, price, count, id) {
     this.count = count;
 }
 
-function addProduct(node, name, price, count, id) {
-    for (var item of cartStorage) {
-        if (item.name === name) {
-            item.count++;
-            return;
-        }
-    }
-    const newItem = new Product(name, price, count, id);
+function addProduct(node, name, price, id) {
+    const newItem = new Product(name, price, 1, id);
     // console.log(newItem.name + ' ' + newItem.price);
     cartStorage.push(newItem);
     $("#cart-container").append(node);
@@ -41,7 +35,7 @@ function addProduct(node, name, price, count, id) {
 function removeOneProduct(node, name) {
     for (var item in cartStorage) {
         if (cartStorage[item].name === name) {
-            cartStorage[item].count--;
+            changeCount(name, -1);
             if (cartStorage[item].count <= 0) {
                 cartStorage.splice(item, 1);
                 for (var nd in nodes) {
@@ -59,8 +53,7 @@ function removeOneProduct(node, name) {
 
 function clearCart() {
     cartStorage.splice(0, cartStorage.length);
-    for (var nd of nodes)
-        document.getElementById('cont1').removeChild(nd);
+    $('#cart-container').empty();
     nodes.splice(0, nodes.length);
 }
 
@@ -69,21 +62,24 @@ function totalSum() {
     for (var item of cartStorage) {
         sum += item.price * item.count;
     }
-    return Number(sum.toFixed(2));
+    $('.totalSum').html('Total sum: ' + Number(sum.toFixed(2)) + '$');
 }
 
-function changeCount(node, name, quantity) {
-    console.log("yes yes yes");
+function changeCount(name, quantity) {
     for (var item of cartStorage) {
         if (item.name == name) {
-            node.find('.dot').html(item.count + quantity);
+            item.count += quantity;
+            console.log(item.count);
+            for (var nd of nodes)
+                if (nd.find('.priceWrapper').data('name') == name)
+                    nd.find('.dot').html(item.count);
         }
     }
 }
 
 $('.clearCart').click(function () {
     clearCart();
-    $('.totalSum').html('Total sum: ' + totalSum() + '$');
+    totalSum();
     //console.log('Cart cleared.');
 });
 
@@ -111,13 +107,18 @@ $(document).on("click", ".btn-buy", function () {
     })));
     nodeCopy.find("input").replaceWith(wrapper);
 
+    let foundNode = false;
     for (var node of nodes) {
-        if (nodeCopy.find('.priceWrapper').data('name') == name)
-            changeCount(node, name, 1);
+        if (node.find('.priceWrapper').data('name') == name) {
+            changeCount(name, 1);
+            foundNode = true;
+        }
     }
 
-    addProduct(nodeCopy, name, price, 1, nodeCopy.data('id'));
-    $('.totalSum').html('Total sum: ' + totalSum() + '$');
+    if (!foundNode)
+        addProduct(nodeCopy, name, price, nodeCopy.data('id'));
+
+    totalSum();
 
     //animating the item image flying
     const width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
@@ -217,16 +218,15 @@ $(document).on("click", ".minus-count", function () {
     const name = $(this).closest('.card').find('.priceWrapper').data('name');
     //console.log(name);
     const nodeCopy = $(this).closest('.card').clone(true);
-    changeCount(nodeCopy, name, -1);
+    console.log(nodeCopy);
     removeOneProduct(nodeCopy, name);
-    $('.totalSum').html('Total sum: ' + totalSum() + '$');
+    totalSum();
 });
 
 $(document).on("click", ".plus-count", function () {
-    const name = $(this).parent().data('name');
-    const price = Number($(this).parent().data('price'));
-    changeCount(this.parentNode.parentNode, name, 1);
-    $('.totalSum').html('Total sum: ' + totalSum() + '$');
+    const name = $(this).closest('.card').find('.priceWrapper').data('name');
+    changeCount(name, 1);
+    totalSum();
 });
 
 
