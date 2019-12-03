@@ -13,6 +13,10 @@ body {
     margin-bottom: 90px;
 }
 
+#cart-container{
+    background-color: #fafafa;
+}
+
 .header {
     display: flex;
     flex-direction: row;
@@ -27,6 +31,22 @@ body {
     color: #000;
     font-size: 1.2em
 }
+
+.dot {
+    position:absolute;
+    font-weight: bold;
+    font-size: 0.8em;
+    padding: 2px 8px;
+    min-height: 25px;
+    min-width: 25px;
+    max-height: 25px;
+    max-width: 25px;
+    background-color: #FF6F61;
+    color:white;
+    border-radius: 50%;
+    margin-left: 228px;
+    margin-top: -10px;
+  }
 
 .header b {
     margin-left: 22px;
@@ -162,18 +182,21 @@ body {
     min-width: 500px;
 }
 
-.minus-count,
-.plus-count {
-    font-size: 1.5em;
-    max-height: 50px;
-    max-width: 40px;
-    min-width: 40px;
-    margin: 6px;
-    padding: 6px 13px 13px;
+.buttons-wrapper{
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .minus-count {
-    padding-left: 12px;
+    padding-left: 14px;
+}
+.minus-count, .plus-count {
+    font-size: 1.5em;
+    max-height: 50px;
+    max-width: 80px;
+    min-width: 80px;
+    margin: 8px;
+    padding: 6px 15px 15px;
 }
 
 .totalSum {
@@ -216,8 +239,8 @@ body {
 
 .card img {
     max-width: 200px;
-    max-height: 200px;
-    min-height: 150px;
+    max-height: 160px;
+    min-height: 130px;
     margin: 0 auto 5%;
 }
 

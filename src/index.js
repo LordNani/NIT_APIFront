@@ -17,20 +17,21 @@ const categoriesMap = new Map();
 let currentCategoryId = 0;
 
 
-function Product(name, price, count) {
+function Product(name, price, count, id) {
+    this.id = id
     this.name = name;
     this.price = price;
     this.count = count;
 }
 
-function addProduct(node, name, price, count) {
+function addProduct(node, name, price, count, id) {
     for (var item of cartStorage) {
         if (item.name === name) {
             item.count++;
             return;
         }
     }
-    const newItem = new Product(name, price, count);
+    const newItem = new Product(name, price, count, id);
     // console.log(newItem.name + ' ' + newItem.price);
     cartStorage.push(newItem);
     $("#cart-container").append(node);
@@ -44,9 +45,10 @@ function removeOneProduct(node, name) {
             if (cartStorage[item].count <= 0) {
                 cartStorage.splice(item, 1);
                 for (var nd in nodes) {
-                    if (nodes[nd].childNodes[3].getAttribute('data-name') == node.childNodes[3].getAttribute('data-name')) {
-                        document.getElementById('cont1').removeChild(nodes[nd]);
+                    if (nodes[nd].find('.priceWrapper').data('name') == node.find('.priceWrapper').data('name')) {
+                        nodes[nd].remove();
                         nodes.splice(nd, 1);
+                        console.log(cartStorage);
                     }
                 }
             }
@@ -71,9 +73,10 @@ function totalSum() {
 }
 
 function changeCount(node, name, quantity) {
+    console.log("yes yes yes");
     for (var item of cartStorage) {
         if (item.name == name) {
-            node.childNodes[5].innerHTML = (name + '&nbsp&nbsp Total: ' + (item.count + quantity));
+            node.find('.dot').html(item.count + quantity);
         }
     }
 }
@@ -98,14 +101,22 @@ $(document).on("click", ".btn-buy", function () {
         "class": "btn btn-success btn-md plus-count",
         text: "+"
     });
-    nodeCopy.find("input").replaceWith(minus, plus);
+    const wrapper = jQuery('<div></div>', {
+        "class": "buttons-wrapper"
+    });
+    wrapper.append(minus, plus);
+    nodeCopy.append((jQuery('<span></span>', {
+        "class": "dot",
+        text: 1
+    })));
+    nodeCopy.find("input").replaceWith(wrapper);
 
     for (var node of nodes) {
-        if (nodeCopy.find('div').data('name') == name)
+        if (nodeCopy.find('.priceWrapper').data('name') == name)
             changeCount(node, name, 1);
     }
 
-    addProduct(nodeCopy, name, price, 1);
+    addProduct(nodeCopy, name, price, 1, nodeCopy.data('id'));
     $('.totalSum').html('Total sum: ' + totalSum() + '$');
 
     //animating the item image flying
@@ -159,8 +170,8 @@ function setCategory(id, name) {
 function generateCard(itemID, img, name, price, specialPrice) {
     const node = jQuery('<div></div>', {
         "class": "col-md-5 col-lg-3 col-xs-6 col-xl-3 card ",
-        id: itemID
     });
+    node.attr('data-id', itemID);
     jQuery('<img>', {
         src: img,
         alt: "Picture of item"
@@ -203,10 +214,10 @@ function generateCard(itemID, img, name, price, specialPrice) {
 }
 
 $(document).on("click", ".minus-count", function () {
-    const name = $(this).parent().data('name');
-    // console.log(name);
-    const nodeCopy = event.target.parentNode.parentNode.cloneNode(true);
-    changeCount(event.target.parentNode.parentNode, name, -1);
+    const name = $(this).closest('.card').find('.priceWrapper').data('name');
+    //console.log(name);
+    const nodeCopy = $(this).closest('.card').clone(true);
+    changeCount(nodeCopy, name, -1);
     removeOneProduct(nodeCopy, name);
     $('.totalSum').html('Total sum: ' + totalSum() + '$');
 });
@@ -215,7 +226,6 @@ $(document).on("click", ".plus-count", function () {
     const name = $(this).parent().data('name');
     const price = Number($(this).parent().data('price'));
     changeCount(this.parentNode.parentNode, name, 1);
-    addProduct(null, name, price, 1);
     $('.totalSum').html('Total sum: ' + totalSum() + '$');
 });
 
@@ -225,7 +235,7 @@ $("#dropdownImage").on("click", function () {
 });
 
 $(document).on("click", function () {
-    if (!($(this).matches('.dropdownIcon'))) {
+    if (!(event.target.matches('.dropdownIcon'))) {
         var dropdowns = $(".dropdown-content");
         for (var i = 0; i < dropdowns.length; i++) {
             var openDropdown = dropdowns[i];
