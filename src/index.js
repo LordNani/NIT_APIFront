@@ -144,8 +144,11 @@ $('.btn-buy').click(function (event) {
 });
 
 $(document).on("click", ".possibleCategory", function () {
-    console.log(categoriesMap.get(this.id).name);
-    setCategory(this.id, categoriesMap.get(this.id).name);
+    //console.log(categoriesMap.get(this.id).name);
+    if (this.id == 0)
+        setCategory(this.id, "All Products");
+    else
+        setCategory(this.id, categoriesMap.get(this.id).name);
 });
 
 function setCategory(id, name) {
@@ -166,7 +169,7 @@ function setCategory(id, name) {
             if (items.length == 0)
                 for (var item of data) {
                     items.push(item);
-                  //  console.log(item.id + "  " + item.name + "   " + item.price);
+                    //  console.log(item.id + "  " + item.name + "   " + item.price);
                 }
             else
                 console.log("Already got data of that category!");
