@@ -144,14 +144,14 @@ $('.btn-buy').click(function (event) {
 });
 
 $(document).on("click", ".possibleCategory", function () {
-    // console.log(this.id);
-    setCategory(this.id);
+    console.log(categoriesMap.get(this.id).name);
+    setCategory(this.id, categoriesMap.get(this.id).name);
 });
 
-function setCategory(id) {
+function setCategory(id, name) {
     currentCategoryId = id;
     let urlToGet = "https://nit.tron.net.ua/api/product/list/category/" + currentCategoryId;
-    $('#parentCategory').text($(this).html());
+    $('#parentCategory').text(name);
     if (currentCategoryId == "0")
         urlToGet = "https://nit.tron.net.ua/api/product/list";
     $.get({
@@ -166,7 +166,7 @@ function setCategory(id) {
             if (items.length == 0)
                 for (var item of data) {
                     items.push(item);
-                    console.log(item.id + "  " + item.name + "   " + item.price);
+                  //  console.log(item.id + "  " + item.name + "   " + item.price);
                 }
             else
                 console.log("Already got data of that category!");
@@ -180,7 +180,6 @@ function setCategory(id) {
 }
 
 function generateCard(itemID, img, name, price, specialPrice) {
-    console.log('appending!');
     const node = jQuery('<div></div>', {
         "class": "col-md-5 col-lg-3 col-xs-6 col-xl-3 card ",
         id: itemID
@@ -195,10 +194,10 @@ function generateCard(itemID, img, name, price, specialPrice) {
             "class": "priceWrapper"
         }).attr('data-price', price).attr('data-name', name);
 
-        (jQuery('<div></div>', {
-            "class": "item-name crop",
-            text: name
-        })).appendTo(node);
+    (jQuery('<div></div>', {
+        "class": "item-name crop",
+        text: name
+    })).appendTo(node);
 
     wrapper.append(jQuery('<p></p>', {
         "class": "newPrice",
@@ -229,12 +228,12 @@ $(document).on("click", ".minus-count", function () {
     //console.log('minus content');
 
     const name = $(this).parent().data('name');
-// console.log(name);
-const nodeCopy = event.target.parentNode.parentNode.cloneNode(true);
-// console.log(nodeCopy.childNodes[3].nodeName);
-changeCount(event.target.parentNode.parentNode, name, -1);
-removeOneProduct(nodeCopy, name);
-$('.totalSum').html('Total sum: ' + totalSum() + '$');
+    // console.log(name);
+    const nodeCopy = event.target.parentNode.parentNode.cloneNode(true);
+    // console.log(nodeCopy.childNodes[3].nodeName);
+    changeCount(event.target.parentNode.parentNode, name, -1);
+    removeOneProduct(nodeCopy, name);
+    $('.totalSum').html('Total sum: ' + totalSum() + '$');
 });
 
 $(document).on("click", ".plus-count", function () {
@@ -269,6 +268,13 @@ window.onload = function () {
         url: "https://nit.tron.net.ua/api/category/list",
         success(data) {
             // console.log(data);
+            itemsMap.set('0', []);
+            $('#myDropdown1').append(jQuery('<li></li>', {
+                id: '0',
+                "class": 'possibleCategory',
+                text: 'All Products'
+            }));
+
             for (var category of data) {
                 categoriesMap.set(category.id, category);
                 itemsMap.set(category.id, []);
@@ -278,14 +284,6 @@ window.onload = function () {
                     text: category.name
                 }));
             }
-
-            itemsMap.set('0', []);
-            $('#myDropdown1').append(jQuery('<li></li>', {
-                id: '0',
-                "class": 'possibleCategory',
-                text: 'All Products'
-            }));
-
             setCategory('0');
         }
 

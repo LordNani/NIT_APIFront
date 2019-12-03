@@ -10,19 +10,21 @@
 <body>
     <div class="header">
         <a href="index.html"><img src="img/icon_website.png" class="main-icon"></a>
+        <div>
         <div class="category dropdown">
-            <button class="btn btn-dark dropdown-toggle current-category" type="button" id = "parentCategory" data-toggle="dropdown"
-                data-display="static">
+
+            <button class="btn btn-dark dropdown-toggle current-category" type="button" data-toggle="dropdown"
+                data-display="static"  id = "parentCategory">
                 All Products
                 <span class="caret"></span></button>
             <ul class="dropdown-menu dropdown-content scrollable-menu" id="myDropdown1">
             </ul>
         </div>
 
-        <div class='search-wrapper'>
+        <!-- <div class='search-wrapper'>
             <input type="text" placeholder="What are you looking for?" class='searchBar'>
             <input type="submit" value="FIND" class='btn-search'>
-        </div>
+        </div> -->
         <nav class="menuOptions">
             <button type="button" class="btn btn-primary btn-lg open-cart" data-toggle="modal"
                 data-target="#myModal"><b>Cart</b></button> <!-- Modal button -->
@@ -38,6 +40,7 @@
                 <a href="favorites.html">Favorites</a>
                 <a href="about.html">About Us</a>
             </div>
+        </div>
         </div>
     </div>
 
@@ -66,89 +69,6 @@
     <div class="items-wrapper container">
         <div class="row justify-content-center" id = "main-row">
 
-            <div class="col-md-5 col-lg-3 col-xs-6 col-xl-3 card">
-                <img src="https://source.unsplash.com/collection/307652/1">
-                <p class="item-name">Product #0 </p>
-                <div class="priceWrapper" data-price="190" data-name="Product #0">
-                    <p class="newPrice">190$ </p>
-                    <p class="oldPrice"><strike>300$</strike></p>
-                </div>
-                <input type="button" value="BUY" class="btn-buy">
-            </div>
-            <!--
-            <div class="col-md-5 col-lg-3 col-xs-6 col-xl-3 card">
-                <img src="https://source.unsplash.com/collection/307652/2">
-                <div class="priceWrapper" data-name="Product #1" data-price="40">
-                    <input type="button" value="BUY" class="btn-buy">
-                    <p class="newPrice">40$ </p>
-                    <p class="oldPrice"><strike>300$</strike></p>
-                </div>
-                <p class="item-name">Product #1 </p>
-            </div>
-            <div class="col-md-5 col-lg-3 col-xs-6 col-xl-3 card">
-                <img src="https://source.unsplash.com/collection/307652/3">
-                <div class="priceWrapper" data-name="Product #2" data-price="29.99">
-                    <input type="button" value="BUY" class="btn-buy">
-                    <p class="newPrice">29.99$ </p>
-                    <p class="oldPrice"><strike>300$</strike></p>
-                </div>
-                <p class="item-name">Product #2 </p>
-            </div>
-            <div class="col-md-5 col-lg-3 col-xs-6 col-xl-3 card">
-                <img src="https://source.unsplash.com/collection/307652/4">
-                <div class="priceWrapper" data-name="Product #3" data-price="2">
-                    <input type="button" value="BUY" class="btn-buy">
-                    <p class="newPrice">2$ </p>
-                    <p class="oldPrice"><strike>300$</strike></p>
-                </div>
-                <p class="item-name">Product #3 </p>
-            </div>
-            <div class="col-md-5 col-lg-3 col-xs-6 col-xl-3 card">
-                <img src="https://source.unsplash.com/collection/307652/5">
-                <div class="priceWrapper" data-name="Product #4" data-price="1000">
-                    <input type="button" value="BUY" class="btn-buy">
-                    <p class="newPrice">1000$ </p>
-                    <p class="oldPrice"><strike>300$</strike></p>
-                </div>
-                <p class="item-name">Product #4 </p>
-            </div>
-            <div class="col-md-5 col-lg-3 col-xs-6 col-xl-3 card">
-                <img src="https://source.unsplash.com/collection/307652/6">
-                <div class="priceWrapper" data-name="Product #5" data-price="123">
-                    <input type="button" value="BUY" class="btn-buy">
-                    <p class="newPrice">123$ </p>
-                    <p class="oldPrice"><strike>300$</strike></p>
-                </div>
-                <p class="item-name">Product #5 </p>
-            </div>
-            <div class="col-md-5 col-lg-3 col-xs-6 col-xl-3 card">
-                <img src="https://source.unsplash.com/collection/307652/7">
-                <div class="priceWrapper" data-name="Product #6" data-price="0.78">
-                    <input type="button" value="BUY" class="btn-buy">
-                    <p class="newPrice">0.78$ </p>
-                    <p class="oldPrice"><strike>300$</strike></p>
-                </div>
-                <p class="item-name">Product #6 </p>
-            </div>
-            <div class="col-md-5 col-lg-3 col-xs-6 col-xl-3 card">
-                <img src="https://source.unsplash.com/collection/307652/8">
-                <div class="priceWrapper" data-name="Product #7" data-price="200">
-                    <input type="button" value="BUY" class="btn-buy">
-                    <p class="newPrice">20000$ </p>
-                    <p class="oldPrice"><strike>45$</strike></p>
-                </div>
-                <p class="item-name">Product #7 </p>
-            </div>
-            <div class="col-md-5 col-lg-3 col-xs-6 col-xl-3 card">
-                <img src="https://source.unsplash.com/collection/307652/9">
-                <div class="priceWrapper" data-name="Product #8" data-price="0.01">
-                    <input type="button" value="BUY" class="btn-buy">
-                    <p class="newPrice">0.01$ </p>
-                    <p class="oldPrice"><strike>300$</strike></p>
-                </div>
-                <p class="item-name">Product #8 </p>
-            </div>
-        -->
         </div>
     </div>
 
