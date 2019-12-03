@@ -3,12 +3,11 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
     entry: {
-        index: './src/index.js',
-        services: './src/services.js'
+        index: './src/index.js'
       },
     output: {
         path: path.resolve(__dirname, 'docs'),
-        filename: 'js/[name].js',
+        filename: 'js/main.js'
     },
     module: {
         rules: [
@@ -18,12 +17,20 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/preset-env'],
-                    },
-                },
+                        presets: ['@babel/preset-env']
+                    }
+                }
             },
+            {
+                    test: /\.(sa|sc|c)ss$/,
+                    use: [
+                        MiniCssExtractPlugin.loader,
+                        'css-loader',
+                        'sass-loader'
+                    ]
+                }
             // ...additional rules...
-        ],
+        ]
     },
 
     devServer: {
@@ -32,23 +39,9 @@ module.exports = {
         port: 9000
       },
 
-    module: {
-        rules: [
-            // ...additional rules...
-            {
-                test: /\.(sa|sc|c)ss$/,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    'css-loader',
-                    'sass-loader',
-                ],
-            },
-        ],
-    },
-
     plugins: [
         new MiniCssExtractPlugin({
-            filename: "css/[name].css",
-        }),
-    ],
+            filename: "css/[name].css"
+        })
+    ]
 };
