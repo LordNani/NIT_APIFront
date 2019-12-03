@@ -203,8 +203,7 @@ body {
 .crop {
     width: 100%;
     overflow: hidden;
-    height: 100px;
-    line-height: 50px;
+    max-height: 62px;
 }
 
 ​ .priceWrapper {
@@ -226,14 +225,13 @@ body {
 .newPrice,
 .oldPrice {
     color: #000;
-    line-height: 2.5;
     font-size: 1.3em;
     padding: 2px;
     margin: 2px;
 }
 
 .item-name{
-    display:inline;
+    font-size:0.9em;
 }
 
 .newPrice {
@@ -251,7 +249,7 @@ body {
     background: linear-gradient(90deg, #00d2ff 0, #3a47d5 100%);
     border: 0;
     width: 40%;
-    height: 80px;
+    height: 44px;
     color: #fff;
     margin: 2px 30%;
     font-weight: 700;

@@ -145,7 +145,11 @@ $('.btn-buy').click(function (event) {
 
 $(document).on("click", ".possibleCategory", function () {
     // console.log(this.id);
-    currentCategoryId = this.id;
+    setCategory(this.id);
+});
+
+function setCategory(id) {
+    currentCategoryId = id;
     let urlToGet = "https://nit.tron.net.ua/api/product/list/category/" + currentCategoryId;
     $('#parentCategory').text($(this).html());
     if (currentCategoryId == "0")
@@ -173,7 +177,7 @@ $(document).on("click", ".possibleCategory", function () {
             }
         }
     });
-});
+}
 
 function generateCard(itemID, img, name, price, specialPrice) {
     console.log('appending!');
@@ -282,24 +286,8 @@ window.onload = function () {
                 text: 'All Products'
             }));
 
-            /* data.forEach(function(item) {
-               console.log(item.name);
-               }); */
+            setCategory('0');
         }
 
-        /*  let tempElem = '<li class="category"><button id="category_all">All</button></li>';
-           $(".categories_list").append(temp_elem);
-           $("#category_all").on("click", function (event) {
-             show_category("all");
-           });
-           for (let i = 0; i < data.length; i++) {
-             temp_elem = '<li class="category"><button id="category_' + data[i].id + '">' + data[i].name + '</button></li>';
-             $(".categories_list").append(temp_elem);
-             $('#category_' + data[i].id).on("click", function (event) {
-               show_category(data[i].id);
-             });
-             categories_json.set(data[i].id, data[i]);
-             }
-            } */
     });
 }
