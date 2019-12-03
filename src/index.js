@@ -98,8 +98,7 @@ $(document).on("click", ".btn-buy", function () {
         "class": "btn btn-success btn-md plus-count",
         text: "+"
     });
-    plus.appendTo(find("button"));
-    nodeCopy.find("button").replaceWith(minus);
+    nodeCopy.find("input").replaceWith(minus, plus);
 
     for (var node of nodes) {
         if (nodeCopy.find('div').data('name') == name)
@@ -204,12 +203,9 @@ function generateCard(itemID, img, name, price, specialPrice) {
 }
 
 $(document).on("click", ".minus-count", function () {
-    //console.log('minus content');
-
     const name = $(this).parent().data('name');
     // console.log(name);
     const nodeCopy = event.target.parentNode.parentNode.cloneNode(true);
-    // console.log(nodeCopy.childNodes[3].nodeName);
     changeCount(event.target.parentNode.parentNode, name, -1);
     removeOneProduct(nodeCopy, name);
     $('.totalSum').html('Total sum: ' + totalSum() + '$');
@@ -228,9 +224,9 @@ $("#dropdownImage").on("click", function () {
     $("#myDropdown2").toggle("show");
 });
 
-window.onclick = function (event) {
-    if (!event.target.matches('.dropdownIcon')) {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
+$(document).on("click", function () {
+    if (!($(this).matches('.dropdownIcon'))) {
+        var dropdowns = $(".dropdown-content");
         for (var i = 0; i < dropdowns.length; i++) {
             var openDropdown = dropdowns[i];
             if (openDropdown.classList.contains('show')) {
@@ -238,8 +234,7 @@ window.onclick = function (event) {
             }
         }
     }
-}
-
+});
 
 window.onload = function () {
     $.get({
