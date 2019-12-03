@@ -1,6 +1,7 @@
+/* eslint-disable multiline-comment-style */
 /* eslint-disable array-element-newline */
-console.log("Hello webpack!");
-console.log(`The time is ${new Date()}`);
+//console.log("Hello webpack!");
+//console.log(`The time is ${new Date()}`);
 import './scss/bootstrap/bootstrap.min.css';
 import 'bootstrap';
 import './scss/main.scss';
@@ -9,6 +10,8 @@ const nodes = [];
 
 const itemsMap = new Map();
 const categoriesMap = new Map();
+
+let currentCategoryId = 0;
 
 
 function Product(name, price, count) {
@@ -79,26 +82,6 @@ $('.clearCart').click(function () {
 });
 
 $('.btn-buy').click(function (event) {
-
-    for (var [key, value] of itemsMap) {
-        console.log(key + ' = ' + value.length);
-    }
-    $.get({
-        dataType: "json",
-        url: "https://nit.tron.net.ua/api/product/list/category/" + "4",
-        success(data) {
-            // console.log(data);
-            const items = itemsMap.get("4");
-            if (items.length == 0) {
-                for (var item of data) {
-                    items.push(item);
-                    console.log(item.id + "   " + item.name + "   " + item.price + "   " + item.special_price);
-                }
-            } else {
-                console.log("Already got data of that category!");
-            }
-        }
-    });
     event.preventDefault();
     const name = $(this).parent().data('name');
     const price = Number($(this).parent().data('price'));
@@ -160,21 +143,100 @@ $('.btn-buy').click(function (event) {
 
 });
 
+$(document).on("click", ".possibleCategory", function () {
+    // console.log(this.id);
+    currentCategoryId = this.id;
+    let urlToGet = "https://nit.tron.net.ua/api/product/list/category/" + currentCategoryId;
+    $('#parentCategory').text($(this).html());
+    if (currentCategoryId == "0")
+        urlToGet = "https://nit.tron.net.ua/api/product/list";
+    $.get({
+        dataType: "json",
+        url: urlToGet,
+        success(data) {
+            //console.log(data);
+            //      for (var [key, value] of itemsMap) {
+            //        console.log(key + ' = ' + value.length);
+            //  }
+            const items = itemsMap.get(currentCategoryId);
+            if (items.length == 0)
+                for (var item of data) {
+                    items.push(item);
+                    console.log(item.id + "  " + item.name + "   " + item.price);
+                }
+            else
+                console.log("Already got data of that category!");
+
+            $("#main-row").empty();
+            for (var i of items) {
+                $("#main-row").append(generateCard(i.id, i.image_url, i.name, i.price, i.special_price));
+            }
+        }
+    });
+});
+
+function generateCard(itemID, img, name, price, specialPrice) {
+    console.log('appending!');
+    const node = jQuery('<div></div>', {
+        "class": "col-md-5 col-lg-3 col-xs-6 col-xl-3 card ",
+        id: itemID
+    });
+    jQuery('<img>', {
+        src: img,
+        alt: "Picture of item"
+    }).appendTo(node);
+
+    const wrapper =
+        jQuery('<div></div>', {
+            "class": "priceWrapper"
+        }).attr('data-price', price).attr('data-name', name);
+
+        (jQuery('<div></div>', {
+            "class": "item-name crop",
+            text: name
+        })).appendTo(node);
+
+    wrapper.append(jQuery('<p></p>', {
+        "class": "newPrice",
+        text: specialPrice
+    }));
+
+    if (specialPrice !== null) {
+        wrapper.append(jQuery('<p></p>', {
+            "class": "oldPrice",
+            text: price
+        }));
+    }
+
+    wrapper.appendTo(node);
+
+    jQuery('<input>', {
+        type: "button",
+        value: "BUY",
+        "class": "btn-buy"
+    }).appendTo(node);
+
+    return node;
+}
+
 $(document).on("click", ".minus-count", function () {
+
+
     //console.log('minus content');
+
     const name = $(this).parent().data('name');
-    // console.log(name);
-    const nodeCopy = event.target.parentNode.parentNode.cloneNode(true);
-    // console.log(nodeCopy.childNodes[3].nodeName);
-    changeCount(event.target.parentNode.parentNode, name, -1);
-    removeOneProduct(nodeCopy, name);
-    $('.totalSum').html('Total sum: ' + totalSum() + '$');
+// console.log(name);
+const nodeCopy = event.target.parentNode.parentNode.cloneNode(true);
+// console.log(nodeCopy.childNodes[3].nodeName);
+changeCount(event.target.parentNode.parentNode, name, -1);
+removeOneProduct(nodeCopy, name);
+$('.totalSum').html('Total sum: ' + totalSum() + '$');
 });
 
 $(document).on("click", ".plus-count", function () {
     const name = $(this).parent().data('name');
     const price = Number($(this).parent().data('price'));
-    changeCount(event.target.parentNode.parentNode, name, 1);
+    changeCount(this.parentNode.parentNode, name, 1);
     addProduct(null, name, price, 1);
     $('.totalSum').html('Total sum: ' + totalSum() + '$');
 });
@@ -184,16 +246,41 @@ $("#dropdownImage").on("click", function () {
     $("#myDropdown2").toggle("show");
 });
 
+window.onclick = function (event) {
+    if (!event.target.matches('.dropdownIcon')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        for (var i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+    }
+}
+
+
 window.onload = function () {
     $.get({
         dataType: "json",
         url: "https://nit.tron.net.ua/api/category/list",
         success(data) {
-            console.log(data);
+            // console.log(data);
             for (var category of data) {
                 categoriesMap.set(category.id, category);
                 itemsMap.set(category.id, []);
+                $('#myDropdown1').append(jQuery('<li></li>', {
+                    id: category.id,
+                    "class": 'possibleCategory',
+                    text: category.name
+                }));
             }
+
+            itemsMap.set('0', []);
+            $('#myDropdown1').append(jQuery('<li></li>', {
+                id: '0',
+                "class": 'possibleCategory',
+                text: 'All Products'
+            }));
 
             /* data.forEach(function(item) {
                console.log(item.name);

@@ -10,7 +10,7 @@ body {
 
 body {
     background-color: #efefef;
-    margin-bottom: 72px;
+    margin-bottom: 90px;
 }
 
 .header {
@@ -47,9 +47,10 @@ body {
 }
 
 .category {
-    position: relative;
     margin: 0px 5px;
     min-width: 200px;
+    display: flex;
+    justify-content: space-around;
 }
 
 .dropdown-content {
@@ -58,25 +59,33 @@ body {
     right: 0;
     position: absolute;
     background-color: #f1f1f1;
-    min-width: 170px;
+    min-width: 180px;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .2);
     z-index: 3;
 
-    li {
+    li,
+    a {
+        cursor: pointer;
         color: #000;
         padding: 12px 16px;
         text-decoration: none;
         display: block;
+
+        &:hover {
+            background-color: #FFA;
+        }
     }
+}
+
+.scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
 }
 
 .open-cart {
     padding: 8px;
-    font-size: 0.85em;
-}
-
-.dropdown-content a:hover {
-    background-color: #ddd;
+    font-size: 0.9em;
 }
 
 .dropdownIcon:hover {
@@ -179,27 +188,37 @@ body {
 }
 
 .card {
-    padding: 10px 2px;
+    padding: 6px 2px;
     margin: 8px;
     max-width: 250px;
-    min-width: 240px;
+    min-width: 250px;
+    height: 350px;
     text-align: center;
     color: #fff;
-    transition: max-width 1s
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.priceWrapper {
+.crop {
+    width: 100%;
+    overflow: hidden;
+    height: 100px;
+    line-height: 50px;
+}
+
+​ .priceWrapper {
     display: flex;
-    justify-content: space-evenly;
-    text-align: center;
+    flex-direction: column;
+    justify-content: space-around;
     max-height: 80px;
-    padding: 8px;
+    padding: 10px;
 }
 
 .card img {
-    border-radius: 15%;
-    width: 200px;
-    height: 200px;
+    max-width: 200px;
+    max-height: 200px;
+    min-height: 150px;
     margin: 0 auto 5%;
 }
 
@@ -208,21 +227,33 @@ body {
 .oldPrice {
     color: #000;
     line-height: 2.5;
-    font-size: 1.4em;
-    margin: 2px;
+    font-size: 1.3em;
     padding: 2px;
+    margin: 2px;
 }
 
-.oldPrice {
-    color: gray;
+.item-name{
+    display:inline;
+}
+
+.newPrice {
+    color: #fb3f4c;
+    max-height: 25px;
+    margin: 5px 5px;
+
+    .oldPrice {
+        color: gray;
+    }
 }
 
 .btn-buy {
     font-size: 1.2em;
     background: linear-gradient(90deg, #00d2ff 0, #3a47d5 100%);
     border: 0;
+    width: 40%;
+    height: 80px;
     color: #fff;
-    margin: 10px 2px;
+    margin: 2px 30%;
     font-weight: 700;
     min-width: 100px;
     border-radius: 6%;
@@ -252,9 +283,9 @@ a:hover {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 72px;
+    height: 90px;
     text-align: center;
-    background-color: #212529
+    background-color: #212529;
 }
 
 .footer img:hover {
