@@ -13,13 +13,11 @@
     <div class="header">
         <a href="index.html"><img src="img/icon_website.png" class="main-icon"></a>
 
-        <div class="category dropdown">
-
-            <button class="btn btn-dark dropdown-toggle current-category" type="button" data-toggle="dropdown"
-                data-display="static" id="parentCategory">
+        <div class="dropdown category ">
+            <button class="btn btn-dark current-category dropdown-toggle" type="button" id = "myDropdown1-btn">
                 All Products
                 <span class="caret"></span></button>
-            <ul class="dropdown-menu dropdown-content scrollable-menu" id="myDropdown1">
+            <ul class="dropdown-menu dropdown-content scrollable-menu" id = "myDropdown1">
             </ul>
         </div>
 
@@ -34,7 +32,7 @@
             <a href="about.html"><b>About</b></a>
         </nav>
 
-        <div class="dropdown menu">
+        <div class="dropdown">
             <img src="img/icon_dd.png" class="dropdownIcon" id="dropdownImage">
             <div id="myDropdown2" class="dropdown-content">
                 <button type="button" class="btn btn-primary btn-md open-cart" data-toggle="modal"
@@ -128,7 +126,9 @@
     </footer>
 
     <script type="text/javascript" src=".\js\jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script type="text/javascript" src=".\js\index.js"></script>
+    <script type="text/javascript" src=".\js\bootstrap.js"></script>
     <script type="text/javascript" src=".\js\jquery-ui-1.12.1\jquery-ui.min.js"></script>
 </body>
 

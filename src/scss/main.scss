@@ -68,10 +68,6 @@ body {
     transition: background-color 1s;
 }
 
-.menu {
-    display: none;
-}
-
 .category {
     margin: 0px 5px;
     min-width: 200px;
@@ -107,6 +103,11 @@ body {
     height: auto;
     max-height: 200px;
     overflow-x: hidden;
+}
+
+.dropdown-menu{
+    top: 70%;
+    right:100%;
 }
 
 .open-cart {

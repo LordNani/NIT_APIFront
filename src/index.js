@@ -69,7 +69,7 @@ function changeCount(name, quantity) {
     for (var item of cartStorage) {
         if (item.name == name) {
             item.count += quantity;
-           // console.log(item.count);
+            // console.log(item.count);
             for (var nd of nodes)
                 if (nd.find('.priceWrapper').data('name') == name)
                     nd.find('.dot').html(item.count);
@@ -83,14 +83,22 @@ $('.clearCart').click(function () {
     //console.log('Cart cleared.');
 });
 
-$(document).on("click", ".btn-buy, .add", function () {
-    let nodeCopy = $(this).closest("div").clone(true);
-   // console.log(this.className);
-    if (this.className == "add") {
-        const id = '#' + $(this).closest("div").data('id');
-       // console.log(id);
-       nodeCopy = $(id);
+$(document).on("click", ".card", function () {
+    const check = $(this).find(".plus-count");
+    if (check.length > 0)
+        return;
+    lastNode = $(this).clone(true);
+    if (event.target.classList.contains("btn-buy")) {
+        clickOnBuy();
+    } else {
+        $('#itemModal').modal('show');
     }
+
+});
+
+function clickOnBuy() {
+    const nodeCopy = lastNode;
+    // console.log(this.className);
     const imgtodrag = nodeCopy.find('img');
     //console.log('clicked on button buy');
     const name = nodeCopy.find(".priceWrapper").data('name');
@@ -123,7 +131,7 @@ $(document).on("click", ".btn-buy, .add", function () {
     }
 
     if (!foundNode)
-        addProduct(nodeCopy, name, price, nodeCopy.attr("id"));
+        addProduct(nodeCopy, name, price, nodeCopy.data('id'));
 
     totalSum();
 
@@ -133,7 +141,7 @@ $(document).on("click", ".btn-buy, .add", function () {
     if (width < 1270)
         newcart = $('.dropdownIcon');
     effectBuyItem(newcart, imgtodrag);
-});
+}
 
 $(document).on("click", ".possibleCategory", function () {
     //console.log(categoriesMap.get(this.id).name);
@@ -178,7 +186,7 @@ function generateCard(itemID, img, name, price, specialPrice) {
     const node = jQuery('<div></div>', {
         "class": "col-md-5 col-lg-3 col-xs-6 col-xl-3 card "
     });
-    node.attr('id', itemID);
+    node.attr('data-id', itemID);
     jQuery('<img>', {
         src: img,
         alt: "Picture of item"
@@ -238,19 +246,24 @@ $(document).on("click", ".plus-count", function () {
 
 $("#dropdownImage").on("click", function () {
     $("#myDropdown2").toggle("show");
+}); 
+
+$("#myDropdown1-btn").on("click", function () {
+    $("#myDropdown1").toggle("show");
 });
 
-$(document).on("click", function () {
-    if (!(event.target.matches('.dropdownIcon'))) {
-        var dropdowns = $(".dropdown-content");
-        for (var i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
-            }
-        }
-    }
-});
+
+// $(document).on("click", function () {
+//     if (!(event.target.matches('.dropdownIcon'))) {
+//         var dropdowns = $(".dropdown-content");
+//         for (var i = 0; i < dropdowns.length; i++) {
+//             var openDropdown = dropdowns[i];
+//             if (openDropdown.classList.contains('show')) {
+//                 openDropdown.classList.remove('show');
+//             }
+//         }
+//     }
+// });
 
 window.onload = function () {
     $.get({
