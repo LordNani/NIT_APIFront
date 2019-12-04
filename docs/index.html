@@ -14,10 +14,10 @@
         <a href="index.html"><img src="img/icon_website.png" class="main-icon"></a>
 
         <div class="dropdown category ">
-            <button class="btn btn-dark current-category dropdown-toggle" type="button" id = "parentCategory">
+            <button class="btn btn-dark current-category dropdown-toggle" type="button" id="parentCategory">
                 All Products
                 <span class="caret"></span></button>
-            <ul class=" dropdown-content dropdown-menu scrollable-menu" id = "myDropdown1">
+            <ul class=" dropdown-content dropdown-menu scrollable-menu" id="myDropdown1">
             </ul>
         </div>
 
@@ -49,33 +49,35 @@
             <div class="modal-content">
                 <div class="modal-header justify-content-center">
                     <h4 class="modal-title">Shopping Cart</h4>
-                    <button type="button" class="btn btn-default" data-dismiss="modal" style = "position: absolute;right: 0;top: 0;font-size: 20px;">&#x2716;</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal"
+                        style="position: absolute;right: 0;top: 0;font-size: 20px;">&#x2716;</button>
+
+                    <form class="dropdown-menu p-4" id="checkout-form">
+                        <div class="form-group">
+                            <label for="form-email">Email address</label>
+                            <input type="email" class="form-control" id="form-email" placeholder="email@example.com" name = "email">
+                        </div>
+                        <div class="form-group">
+                            <label for="form-name">Name</label>
+                            <input type="password" class="form-control" id="form-name" placeholder="Name" name = "name">
+                        </div>
+                        <div class="form-group">
+                            <label for="form-phone">Phone</label>
+                            <input type="phone" class="form-control" id="form-phone" placeholder="Phone" name = "phone">
+                        </div>
+                        <button type="submit" class="btn btn-primary" id= "checkout-submit">Send</button>
+
+                    </form>
                 </div>
                 <div class="modal-body">
-                        <form class="dropdown-menu p-4" id = "checkout-form">
-                                <div class="form-group">
-                                  <label for="exampleDropdownFormEmail2">Email address</label>
-                                  <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@example.com">
-                                </div>
-                                <div class="form-group">
-                                  <label for="exampleDropdownFormPassword2">Password</label>
-                                  <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Password">
-                                </div>
-                                <div class="form-check">
-                                  <input type="checkbox" class="form-check-input" id="dropdownCheck2">
-                                  <label class="form-check-label" for="dropdownCheck2">
-                                    Remember me
-                                  </label>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Sign in</button>
-                              </form>
                     <div class="row justify-content-center" id='cart-container'>
                     </div>
                 </div>
                 <div class="modal-footer" style="display:flex;flex-wrap: wrap;justify-content: space-evenly;">
                     <button type="button" class="btn btn-danger btn-lg clearCart"><b>Clear</b></button>
                     <h1 class='totalSum'>Total sum: 0.0$</h1>
-                    <button type="button" class="btn btn-success btn-lg checkout" id = "checkout-btn"><b>Checkout</b></button>
+                    <button type="button" class="btn btn-success btn-lg checkout"
+                        id="checkout-btn"><b>Checkout</b></button>
                 </div>
             </div>
 
@@ -85,38 +87,7 @@
     <div id="itemModal" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg " role="document">
             <div class="modal-content">
-                <div class="modal-body item-container" id = "item-modal-container">
-                    <!-- <div class="images">
-                        <img src="https://i2.rozetka.ua/goods/7247395/53465688_images_7247395890.jpg" class="img-big" />
-                    </div>
-                    <div class="product" data-id = "4">
-                        <h1 class = "title">MacBook Air 13'' 1.8GHz 128GB (MQD32) 2017</h1>
-                        <h2 class="newPrice">24365.00</h2>
-                        <h2 class="oldPrice">25340.00</h2>
-                        <p class="desc">MacBook Air — на целый день свершений\r\nMacBook Air
-                            работает без подзарядки до 12 часов — это означает, что весь день
-                            вы свободны от проводов и розеток. Когда захочется отдохнуть, вы сможете
-                            смотреть фильмы в iTunes до 12 часов подряд. Кроме того, MacBook Air способен
-                            находиться в режиме ожидания до 30 дней. Вы можете сделать перерыв на несколько
-                            недель и вернуться к работе там же, где остановились.\r\nТонкий. Легкий. Мощный.
-                            И готов ко всему\r\nПроцессоры Intel Core i5 пятого поколения и графические процессоры
-                            Intel HD Graphics 6000 позволят вам решать любые задачи с невероятной скоростью:
-                            от редактирования фотографий до поиска в интернете. Все эти возможности помещаются
-                            в тонком корпусе unibody, толщина которого всего 1.7 см, а вес — 1.35 кг.\r\nПоддержка
-                            Wi‑Fi 802.11ac — легкие соединения\r\nMacBook Air мгновенно подключается к базовым
-                            станциям стандарта 802.11ac, таким как AirPort Extreme или AirPort Time Capsule.
-                            Скорость беспроводного соединения при этом в три раза выше, чем у Wi‑Fi предыдущего
-                            поколения. Помимо этого, стандарт 802.11ac предусматривает расширенную зону покрытия
-                            — вы почувствуете себя свободнее и мобильнее.\r\nДела идут отлично с
-                            SSD‑накопителем\r\nSSD-накопители MacBook Air работают до 17 раз быстрее, чем
-                            обычные жесткие диски ноутбуков с частотой 5400 об/мин. Любые задачи выполняются
-                            быстро и плавно. А благодаря сочетанию SSD‑накопителей и процессоров Intel Core
-                            5‑го поколения MacBook Air выходит из режима сна еще быстрее, чем
-                            прежде.\r\nmacOS\r\nmacOS — это операционная система, которая стоит за всем,
-                            что вы делаете на своём Mac. В macOS Sierra вы сможете общаться с Siri, работать
-                            с фотографиями по‑новому и совершенно свободно переключаться между устройствами.</p>
-                            <button class="add">Add to Cart</button>
-                    </div> -->
+                <div class="modal-body item-container" id="item-modal-container">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -142,7 +113,9 @@
     </footer>
 
     <script type="text/javascript" src=".\js\jquery-3.4.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous">
+    </script>
     <script type="text/javascript" src=".\js\index.js"></script>
     <script type="text/javascript" src=".\js\bootstrap.js"></script>
     <script type="text/javascript" src=".\js\jquery-ui-1.12.1\jquery-ui.min.js"></script>

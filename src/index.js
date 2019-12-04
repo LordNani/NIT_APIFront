@@ -1,7 +1,5 @@
 /* eslint-disable multiline-comment-style */
 /* eslint-disable array-element-newline */
-//console.log("Hello webpack!");
-//console.log(`The time is ${new Date()}`);
 import './scss/bootstrap/bootstrap.min.css';
 import 'bootstrap';
 import './scss/main.scss';
@@ -10,6 +8,7 @@ import {
 } from './ui.js';
 const cartStorage = [];
 const nodes = [];
+const token = "s6r35uUpnFTq1naCmw8w";
 
 const itemsMap = new Map();
 const categoriesMap = new Map();
@@ -26,7 +25,6 @@ function Product(name, price, count, id) {
 
 function addProduct(node, name, price, id) {
     const newItem = new Product(name, price, 1, id);
-    // console.log(newItem.name + ' ' + newItem.price);
     cartStorage.push(newItem);
     $("#cart-container").append(node);
     nodes.push(node);
@@ -42,7 +40,6 @@ function removeOneProduct(node, name) {
                     if (nodes[nd].find('.priceWrapper').data('name') == node.find('.priceWrapper').data('name')) {
                         nodes[nd].remove();
                         nodes.splice(nd, 1);
-                        //console.log(cartStorage);
                     }
                 }
             }
@@ -77,9 +74,6 @@ function changeCount(name, quantity) {
     }
 }
 
-$("#checkout-btn").on("click", function () {
-    $("#checkout-form").toggle("show");
-});
 
 $('.clearCart').click(function () {
     clearCart();
@@ -157,12 +151,8 @@ function generateModal(id) {
 
 function clickOnBuy() {
     const nodeCopy = lastNode;
-    // console.log(this.className);
-
-    //console.log('clicked on button buy');
     const name = nodeCopy.find(".priceWrapper").data('name');
     const price = Number(nodeCopy.find(".priceWrapper").data('price'));
-    //console.log(name + " " + price);
     const minus = jQuery('<button></button>', {
         "class": "btn btn-danger btn-md minus-count",
         text: "-"
@@ -204,8 +194,6 @@ function clickOnBuy() {
 }
 
 $(document).on("click", ".possibleCategory", function () {
-    //console.log(categoriesMap.get(this.id).name);
-    console.log("Changing category");
     if (this.id == 0)
         setCategory(this.id, "All Products");
     else
@@ -287,9 +275,7 @@ function generateCard(itemID, img, name, price, specialPrice) {
 
 $(document).on("click", ".minus-count", function () {
     const name = $(this).closest('.card').find('.priceWrapper').data('name');
-    //console.log(name);
     const nodeCopy = $(this).closest('.card').clone(true);
-    // console.log(nodeCopy);
     removeOneProduct(nodeCopy, name);
     totalSum();
 });
@@ -311,6 +297,10 @@ $("#parentCategory").on("click", function () {
 
 
 $(document).on("click", function () {
+    if (event.target.closest("form") === null && event.target.closest("button") === null) {
+        $(".p-4")[0].style.display = "none";
+    }
+
     if (!(event.target.matches('.dropdownIcon') || event.target.matches('.current-category'))) {
         var dropdowns = $(".dropdown-content");
         for (var openDropdown of dropdowns) {
@@ -321,12 +311,12 @@ $(document).on("click", function () {
     }
 });
 
+
 window.onload = function () {
     $.get({
         dataType: "json",
         url: "https://nit.tron.net.ua/api/category/list",
         success(data) {
-            // console.log(data);
             itemsMap.set('0', []);
             $('#myDropdown1').append(jQuery('<li></li>', {
                 id: '0',
@@ -348,3 +338,42 @@ window.onload = function () {
 
     });
 }
+
+$("#checkout-btn").on("click", function () {
+    $("#checkout-form").toggle("show");
+});
+
+$("form").submit(function (event) {
+
+    event.preventDefault();
+    let dataToSend = $("form").serialize();
+    console.log(dataToSend);
+    for (var item of cartStorage) {
+        console.log(item);
+        // if (products[i] != null)
+        //     sent_data += '&products[' + i + ']=' + products[i];
+    }
+    // $.post({
+    //     url: 'https://nit.tron.net.ua/api/order/add',
+    //     dataType: 'json',
+    //     success: function (element) {
+    //         $('.errorText').empty();
+    //         for (var type in element.errors) {
+    //             message(element.errors[type]);
+    //             return;
+    //         }
+    //         message('Success');
+    //         cleanCart();
+    //         setTimeout(function () {
+    //             $('.userForm').toggle();
+    //         }, 2500);
+
+    //     },
+    // });
+    // $("span").text("Form submitted")
+    //     .css({
+    //         "display": "inline",
+    //         "color": "forestgreen"
+    //     })
+    //     .fadeOut(1000);
+});

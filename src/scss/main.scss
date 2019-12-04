@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:400,700');
-$font: 'Lato', sans-serif;
+$font: 'Lato',
+sans-serif;
 
 $dark: #4E4E4E;
 
@@ -19,7 +20,7 @@ body {
     margin-bottom: 90px;
 }
 
-#cart-container{
+#cart-container {
     background-color: #fafafa;
 }
 
@@ -39,7 +40,7 @@ body {
 }
 
 .dot {
-    position:absolute;
+    position: absolute;
     font-weight: bold;
     font-size: 0.8em;
     padding: 2px 5px;
@@ -48,11 +49,11 @@ body {
     max-height: 25px;
     max-width: 25px;
     background-color: #FF6F61;
-    color:white;
+    color: white;
     border-radius: 50%;
     margin-left: 228px;
     margin-top: -10px;
-  }
+}
 
 .header b {
     margin-left: 22px;
@@ -105,7 +106,7 @@ body {
     overflow-x: hidden;
 }
 
-.dropdown-menu{
+.dropdown-menu {
     top: 80%;
 }
 
@@ -185,7 +186,7 @@ body {
     min-width: 500px;
 }
 
-.buttons-wrapper{
+.buttons-wrapper {
     flex-direction: row;
     justify-content: space-between;
 }
@@ -193,7 +194,9 @@ body {
 .minus-count {
     padding-left: 14px;
 }
-.minus-count, .plus-count {
+
+.minus-count,
+.plus-count {
     font-size: 1.5em;
     max-height: 50px;
     max-width: 80px;
@@ -256,8 +259,8 @@ body {
     margin: 2px;
 }
 
-.item-name{
-    font-size:0.9em;
+.item-name {
+    font-size: 0.9em;
 }
 
 .newPrice {
@@ -269,8 +272,9 @@ body {
 .oldPrice {
     max-height: 25px;
     margin: 5px 5px;
-    &::before{
-        content:"\00a0";
+
+    &::before {
+        content: "\00a0";
     }
 }
 
@@ -291,7 +295,8 @@ body {
     border-radius: 20px;
 }
 
-.btn-buy:active, .btn-buy:focus {
+.btn-buy:active,
+.btn-buy:focus {
     outline: none;
 }
 
@@ -378,10 +383,11 @@ a:hover {
     font-family: $font, sans-serif;
     text-transform: uppercase;
 }
+
 .title {
-  font-size: 1.3em;
-  color: $dark;
-  margin-top: -5px;
+    font-size: 1.3em;
+    color: $dark;
+    margin-top: -5px;
 }
 
 
@@ -392,7 +398,7 @@ a:hover {
     margin: auto 10px;
 }
 
-.images{
+.images {
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
@@ -400,10 +406,11 @@ a:hover {
 }
 
 .product {
-    display:flex;
+    display: flex;
     flex-direction: column;
-  align-items:center;
+    align-items: center;
 }
+
 .desc {
     text-transform: none;
     margin: 10px auto;
@@ -432,8 +439,17 @@ a:hover {
     height: 55px;
     letter-spacing: 3px;
     color: #F5F5F5;
-  &:hover {
-    background: #b17d79;
-    transition: all .4s ease-in-out;
-  }
+
+    &:hover {
+        background: #b17d79;
+        transition: all .4s ease-in-out;
+    }
+}
+
+#checkout-form {
+    position: absolute;
+    width: 90%;
+    top: 20%;
+    margin: 0px 5%;
+    background-color: #c6c6c6;
 }
