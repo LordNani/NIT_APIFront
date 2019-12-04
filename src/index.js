@@ -205,6 +205,7 @@ function clickOnBuy() {
 
 $(document).on("click", ".possibleCategory", function () {
     //console.log(categoriesMap.get(this.id).name);
+    console.log("Changing category");
     if (this.id == 0)
         setCategory(this.id, "All Products");
     else
@@ -304,7 +305,7 @@ $("#dropdownImage").on("click", function () {
     $("#myDropdown2").toggle("show");
 });
 
-$("#myDropdown1-btn").on("click", function () {
+$("#parentCategory").on("click", function () {
     $("#myDropdown1").toggle("show");
 });
 
