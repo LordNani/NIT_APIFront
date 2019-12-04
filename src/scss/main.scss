@@ -335,43 +335,6 @@ a:hover {
     transform: rotate(30deg)
 }
 
-@media print {
-    .current-category::after {
-        content: attr(content) "All items available on our website!";
-    }
-
-    input[type=submit],
-    input[type=text],
-    nav {
-        display: none;
-    }
-}
-
-@media screen and (max-width:1270px) {
-    nav {
-        display: none;
-    }
-
-    .dropdown {
-        display: inline;
-    }
-
-    .items-wrapper {
-        min-width: 98%;
-    }
-}
-
-@media screen and (max-width:890px) {
-    .search-wrapper {
-        display: none;
-    }
-}
-
-@media screen and (max-width:550px) {
-    .main-icon {
-        display: none;
-    }
-}
 
 .item-container {
     box-sizing: border-box;
@@ -447,9 +410,68 @@ a:hover {
 }
 
 #checkout-form {
+    z-index: 10000;
     position: absolute;
     width: 90%;
     top: 20%;
     margin: 0px 5%;
-    background-color: #c6c6c6;
+    background-color: #EAEAEA;
+    
 }
+
+.post-message{
+    position: relative;
+    float: right;
+    border-radius: 4px;
+    width: auto;
+    height: auto;
+    font-size: 1.05em;
+    margin: 5px;
+    padding:4px;
+}
+
+@media screen and (max-width:992px) {
+    .post-message{
+        float: left;
+    }
+}
+
+
+@media print {
+    .current-category::after {
+        content: attr(content) "All items available on our website!";
+    }
+
+    input[type=submit],
+    input[type=text],
+    nav {
+        display: none;
+    }
+}
+
+@media screen and (max-width:1270px) {
+    nav {
+        display: none;
+    }
+
+    .dropdown {
+        display: inline;
+    }
+
+    .items-wrapper {
+        min-width: 98%;
+    }
+}
+
+@media screen and (max-width:890px) {
+    .search-wrapper {
+        display: none;
+    }
+}
+
+@media screen and (max-width:550px) {
+    .main-icon {
+        display: none;
+    }
+}
+

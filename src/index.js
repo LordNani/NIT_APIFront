@@ -52,6 +52,7 @@ function clearCart() {
     cartStorage.splice(0, cartStorage.length);
     $('#cart-container').empty();
     nodes.splice(0, nodes.length);
+    totalSum();
 }
 
 function totalSum() {
@@ -299,6 +300,7 @@ $("#parentCategory").on("click", function () {
 $(document).on("click", function () {
     if (event.target.closest("form") === null && event.target.closest("button") === null) {
         $(".p-4")[0].style.display = "none";
+        $('#checkout-form')[0].reset();
     }
 
     if (!(event.target.matches('.dropdownIcon') || event.target.matches('.current-category'))) {
@@ -346,34 +348,37 @@ $("#checkout-btn").on("click", function () {
 $("form").submit(function (event) {
 
     event.preventDefault();
-    let dataToSend = $("form").serialize();
-    console.log(dataToSend);
+    let dataToSend = 'token=' + token + '&' + $("form").serialize();
     for (var item of cartStorage) {
-        console.log(item);
-        // if (products[i] != null)
-        //     sent_data += '&products[' + i + ']=' + products[i];
+        //console.log(item);
+        dataToSend += '&products[' + item.id + ']=' + item.count;
     }
-    // $.post({
-    //     url: 'https://nit.tron.net.ua/api/order/add',
-    //     dataType: 'json',
-    //     success: function (element) {
-    //         $('.errorText').empty();
-    //         for (var type in element.errors) {
-    //             message(element.errors[type]);
-    //             return;
-    //         }
-    //         message('Success');
-    //         cleanCart();
-    //         setTimeout(function () {
-    //             $('.userForm').toggle();
-    //         }, 2500);
+    console.log(dataToSend);
+    $.post({
+        url: 'https://nit.tron.net.ua/api/order/add',
+        dataType: 'json',
+        data: dataToSend,
+        success(data) {
+            // console.log(data);
+            for (var error in data.errors) {
+                console.log(data.errors[error]);
+                postMessage(data.errors[error]);
+                return;
+            }
+            postMessage('Order created');
+            clearCart();
 
-    //     },
-    // });
-    // $("span").text("Form submitted")
-    //     .css({
-    //         "display": "inline",
-    //         "color": "forestgreen"
-    //     })
-    //     .fadeOut(1000);
+        }
+    });
 });
+
+function postMessage(message) {
+    $('.post-message').empty();
+    if (message == 'Order created') {
+        $('.post-message')[0].style.backgroundColor = "#63c550";
+        setTimeout(function(){$("#checkout-form").toggle("show")}, 2000);
+    } else {
+        $('.post-message')[0].style.backgroundColor = "#ee2336";
+    }
+    $('.post-message').html(message);
+}
