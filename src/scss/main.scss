@@ -106,8 +106,7 @@ body {
 }
 
 .dropdown-menu{
-    top: 70%;
-    right:100%;
+    top: 80%;
 }
 
 .open-cart {
@@ -119,9 +118,6 @@ body {
     background-color: rgba(10, 10, 10, .2)
 }
 
-.show {
-    display: block;
-}
 
 .searchBar {
     width: 70%;
@@ -268,8 +264,6 @@ body {
     color: #fb3f4c;
     max-height: 25px;
     margin: 5px 5px;
-
-
 }
 
 .oldPrice {
@@ -278,6 +272,10 @@ body {
     &::before{
         content:"\00a0";
     }
+}
+
+.menu-show {
+    display: none;
 }
 
 .btn-buy {
@@ -374,7 +372,9 @@ a:hover {
     box-sizing: border-box;
     flex-wrap: wrap;
     display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
+    align-items: center;
     font-family: $font, sans-serif;
     text-transform: uppercase;
 }
@@ -393,6 +393,7 @@ a:hover {
 }
 
 .images{
+    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
     flex-basis: auto;
@@ -403,17 +404,17 @@ a:hover {
     flex-direction: column;
   align-items:center;
 }
-
 .desc {
     text-transform: none;
-    margin: auto;
+    margin: 10px auto;
     margin-bottom: 20px;
     color: #4E4E4E;
     font-size: 1.05em;
     line-height: 1.6em;
     text-align: justify;
     overflow-y: auto;
-    height: 200px;
+    max-height: 200px;
+    min-height: 50px;
     width: 95%;
     white-space: pre-line;
 }

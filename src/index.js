@@ -91,10 +91,65 @@ $(document).on("click", ".card", function () {
     if (event.target.classList.contains("btn-buy")) {
         clickOnBuy();
     } else {
+        generateModal(lastNode.data('id'));
+        //console.log(lastNode.data('id'));
         $('#itemModal').modal('show');
     }
 
 });
+
+$(document).on("click", ".add", function () {
+    clickOnBuy();
+});
+
+function generateModal(id) {
+    let thisItem;
+    for (var item of itemsMap.get(currentCategoryId)) {
+        //console.log(item.name);
+        if (item.id == id) {
+            thisItem = item;
+            break;
+        }
+    }
+    $('#item-modal-container').empty();
+    const imageWrapper =
+    jQuery('<div></div>', {
+        "class": "images"
+    });
+    jQuery('<img>', {
+        "class": "img-big",
+        src: thisItem.image_url
+    }).appendTo(imageWrapper);
+    $('#item-modal-container').append(imageWrapper);
+
+    const productWrapper =
+    jQuery('<div></div>', {
+        "class": "product"
+    });
+    jQuery('<h1></h1>', {
+        "class": "title",
+        text: thisItem.name
+    }).appendTo(productWrapper);
+    if (thisItem.special_price !== null) {
+        productWrapper.append(jQuery('<h2></h2>', {
+            "class": "newPrice",
+            text: thisItem.special_price
+        }));
+    }
+    jQuery('<h2></h2>', {
+        "class": "oldPrice",
+        text: thisItem.price
+    }).appendTo(productWrapper);
+    jQuery('<p></p>', {
+        "class": "desc",
+        text: thisItem.description
+    }).appendTo(productWrapper);
+    productWrapper.append(jQuery('<button></button>', {
+        "class": "add",
+        text: "Add to Cart"
+    }));
+    $('#item-modal-container').append(productWrapper);
+}
 
 function clickOnBuy() {
     const nodeCopy = lastNode;
@@ -169,7 +224,7 @@ function setCategory(id, name) {
             if (items.length == 0)
                 for (var item of data) {
                     items.push(item);
-                    //  console.log(item.id + "  " + item.name + "   " + item.price);
+                   //  console.log(item.id + "  " + item.name + "   " + item.price);
                 }
             else
                 console.log("Already got data of that category!");
@@ -232,7 +287,7 @@ $(document).on("click", ".minus-count", function () {
     const name = $(this).closest('.card').find('.priceWrapper').data('name');
     //console.log(name);
     const nodeCopy = $(this).closest('.card').clone(true);
-    console.log(nodeCopy);
+   // console.log(nodeCopy);
     removeOneProduct(nodeCopy, name);
     totalSum();
 });
@@ -246,24 +301,23 @@ $(document).on("click", ".plus-count", function () {
 
 $("#dropdownImage").on("click", function () {
     $("#myDropdown2").toggle("show");
-}); 
+});
 
 $("#myDropdown1-btn").on("click", function () {
     $("#myDropdown1").toggle("show");
 });
 
 
-// $(document).on("click", function () {
-//     if (!(event.target.matches('.dropdownIcon'))) {
-//         var dropdowns = $(".dropdown-content");
-//         for (var i = 0; i < dropdowns.length; i++) {
-//             var openDropdown = dropdowns[i];
-//             if (openDropdown.classList.contains('show')) {
-//                 openDropdown.classList.remove('show');
-//             }
-//         }
-//     }
-// });
+$(document).on("click", function () {
+    if (!(event.target.matches('.dropdownIcon') || event.target.matches('.current-category'))) {
+        var dropdowns = $(".dropdown-content");
+        for (var openDropdown of dropdowns) {
+            if (openDropdown.style.display != "none") {
+                openDropdown.style.display = "none";
+            }
+        }
+    }
+});
 
 window.onload = function () {
     $.get({
