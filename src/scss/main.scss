@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+$font: 'Lato', sans-serif;
+
+$dark: #4E4E4E;
+
+
 html {
     position: relative;
     min-height: 100%;
@@ -262,8 +268,14 @@ body {
     max-height: 25px;
     margin: 5px 5px;
 
-    .oldPrice {
-        color: gray;
+
+}
+
+.oldPrice {
+    max-height: 25px;
+    margin: 5px 5px;
+    &::before{
+        content:"\00a0";
     }
 }
 
@@ -278,6 +290,10 @@ body {
     font-weight: 700;
     min-width: 100px;
     border-radius: 20px;
+}
+
+.btn-buy:active, .btn-buy:focus {
+    outline: none;
 }
 
 .btn-buy:hover {
@@ -351,4 +367,70 @@ a:hover {
     .main-icon {
         display: none;
     }
+}
+
+.item-container {
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-evenly;
+    font-family: $font, sans-serif;
+    text-transform: uppercase;
+}
+.title {
+  font-size: 1.3em;
+  color: $dark;
+  margin-top: -5px;
+}
+
+
+.img-big {
+    max-width: 300px;
+    max-height: 200px;
+    min-height: 130px;
+    margin: auto 10px;
+}
+
+.images{
+    display: flex;
+    flex-direction: column;
+    flex-basis: auto;
+}
+
+.product {
+    display:flex;
+    flex-direction: column;
+  align-items:center;
+}
+
+.desc {
+    text-transform: none;
+    margin: auto;
+    margin-bottom: 20px;
+    color: #4E4E4E;
+    font-size: 1.05em;
+    line-height: 1.6em;
+    text-align: justify;
+    overflow-y: auto;
+    height: 200px;
+    width: 95%;
+    white-space: pre-line;
+}
+
+.add {
+    background: #cda9ac;
+    padding: 10px;
+    display: inline-block;
+    outline: 0;
+    border: 0;
+    margin: auto;
+    border-radius: 2px;
+    text-transform: uppercase;
+    width: 200px;
+    height: 55px;
+    letter-spacing: 3px;
+    color: #F5F5F5;
+  &:hover {
+    transition: all .4s ease-in-out;
+  }
 }

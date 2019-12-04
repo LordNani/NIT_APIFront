@@ -15,7 +15,7 @@ const itemsMap = new Map();
 const categoriesMap = new Map();
 
 let currentCategoryId = 0;
-
+let lastNode = 0;
 
 function Product(name, price, count, id) {
     this.id = id
@@ -42,7 +42,7 @@ function removeOneProduct(node, name) {
                     if (nodes[nd].find('.priceWrapper').data('name') == node.find('.priceWrapper').data('name')) {
                         nodes[nd].remove();
                         nodes.splice(nd, 1);
-                        console.log(cartStorage);
+                        //console.log(cartStorage);
                     }
                 }
             }
@@ -69,7 +69,7 @@ function changeCount(name, quantity) {
     for (var item of cartStorage) {
         if (item.name == name) {
             item.count += quantity;
-            console.log(item.count);
+           // console.log(item.count);
             for (var nd of nodes)
                 if (nd.find('.priceWrapper').data('name') == name)
                     nd.find('.dot').html(item.count);
@@ -83,12 +83,19 @@ $('.clearCart').click(function () {
     //console.log('Cart cleared.');
 });
 
-$(document).on("click", ".btn-buy", function () {
+$(document).on("click", ".btn-buy, .add", function () {
+    let nodeCopy = $(this).closest("div").clone(true);
+   // console.log(this.className);
+    if (this.className == "add") {
+        const id = '#' + $(this).closest("div").data('id');
+       // console.log(id);
+       nodeCopy = $(id);
+    }
+    const imgtodrag = nodeCopy.find('img');
     //console.log('clicked on button buy');
-    const name = $(this).siblings("div")[1].getAttribute('data-name');
-    const price = Number($(this).siblings("div")[1].getAttribute('data-price'));
+    const name = nodeCopy.find(".priceWrapper").data('name');
+    const price = Number(nodeCopy.find(".priceWrapper").data('price'));
     //console.log(name + " " + price);
-    const nodeCopy = $(this).closest("div").clone(true);
     const minus = jQuery('<button></button>', {
         "class": "btn btn-danger btn-md minus-count",
         text: "-"
@@ -116,7 +123,7 @@ $(document).on("click", ".btn-buy", function () {
     }
 
     if (!foundNode)
-        addProduct(nodeCopy, name, price, nodeCopy.data('id'));
+        addProduct(nodeCopy, name, price, nodeCopy.attr("id"));
 
     totalSum();
 
@@ -125,7 +132,6 @@ $(document).on("click", ".btn-buy", function () {
     let newcart = $('.open-cart');
     if (width < 1270)
         newcart = $('.dropdownIcon');
-    const imgtodrag = $(this).closest('div').find('img');
     effectBuyItem(newcart, imgtodrag);
 });
 
@@ -172,7 +178,7 @@ function generateCard(itemID, img, name, price, specialPrice) {
     const node = jQuery('<div></div>', {
         "class": "col-md-5 col-lg-3 col-xs-6 col-xl-3 card "
     });
-    node.attr('data-id', itemID);
+    node.attr('id', itemID);
     jQuery('<img>', {
         src: img,
         alt: "Picture of item"

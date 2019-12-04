@@ -16,7 +16,7 @@
         <div class="category dropdown">
 
             <button class="btn btn-dark dropdown-toggle current-category" type="button" data-toggle="dropdown"
-                data-display="static"  id = "parentCategory">
+                data-display="static" id="parentCategory">
                 All Products
                 <span class="caret"></span></button>
             <ul class="dropdown-menu dropdown-content scrollable-menu" id="myDropdown1">
@@ -66,14 +66,62 @@
         </div>
     </div>
 
+    <div id="itemModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg " role="document">
+            <div class="modal-content">
+                <div class="modal-body item-container">
+                    <div class="images">
+                        <img src="https://i2.rozetka.ua/goods/7247395/53465688_images_7247395890.jpg" class="img-big" />
+                    </div>
+                    <div class="product" data-id = "4">
+                        <h1 class = "title">MacBook Air 13'' 1.8GHz 128GB (MQD32) 2017</h1>
+                        <h2 class="newPrice">24365.00</h2>
+                        <h2 class="oldPrice">25340.00</h2>
+                        <p class="desc">MacBook Air — на целый день свершений\r\nMacBook Air
+                            работает без подзарядки до 12 часов — это означает, что весь день
+                            вы свободны от проводов и розеток. Когда захочется отдохнуть, вы сможете
+                            смотреть фильмы в iTunes до 12 часов подряд. Кроме того, MacBook Air способен
+                            находиться в режиме ожидания до 30 дней. Вы можете сделать перерыв на несколько
+                            недель и вернуться к работе там же, где остановились.\r\nТонкий. Легкий. Мощный.
+                            И готов ко всему\r\nПроцессоры Intel Core i5 пятого поколения и графические процессоры
+                            Intel HD Graphics 6000 позволят вам решать любые задачи с невероятной скоростью:
+                            от редактирования фотографий до поиска в интернете. Все эти возможности помещаются
+                            в тонком корпусе unibody, толщина которого всего 1.7 см, а вес — 1.35 кг.\r\nПоддержка
+                            Wi‑Fi 802.11ac — легкие соединения\r\nMacBook Air мгновенно подключается к базовым
+                            станциям стандарта 802.11ac, таким как AirPort Extreme или AirPort Time Capsule.
+                            Скорость беспроводного соединения при этом в три раза выше, чем у Wi‑Fi предыдущего
+                            поколения. Помимо этого, стандарт 802.11ac предусматривает расширенную зону покрытия
+                            — вы почувствуете себя свободнее и мобильнее.\r\nДела идут отлично с
+                            SSD‑накопителем\r\nSSD-накопители MacBook Air работают до 17 раз быстрее, чем
+                            обычные жесткие диски ноутбуков с частотой 5400 об/мин. Любые задачи выполняются
+                            быстро и плавно. А благодаря сочетанию SSD‑накопителей и процессоров Intel Core
+                            5‑го поколения MacBook Air выходит из режима сна еще быстрее, чем
+                            прежде.\r\nmacOS\r\nmacOS — это операционная система, которая стоит за всем,
+                            что вы делаете на своём Mac. В macOS Sierra вы сможете общаться с Siri, работать
+                            с фотографиями по‑новому и совершенно свободно переключаться между устройствами.</p>
+                            <button class="add">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
     <div class="items-wrapper container">
-        <div class="row justify-content-center" id = "main-row">
+        <div class="row justify-content-center" id="main-row">
 
         </div>
     </div>
 
     <footer class="footer mt-auto py-3 blue">
         <div class="container-fluid text-center ">
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
+                data-target="#itemModal"><b>thisItem</b></button>
             <span class="text-muted ">All copyright reserved to the Lord Nani</span>
             <a href=https://t.me/fuckwatermelons target="_blank"> <img src="img/icon_tg2.png"></a>
         </div>
