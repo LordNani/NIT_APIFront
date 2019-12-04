@@ -1,13 +1,13 @@
 // eslint-disable-next-line no-unused-vars
 export function effectBuyItem(cartImg, imgToDrag) {
     if (imgToDrag) {
-        const imgclone = imgToDrag.clone()
+        const imgclone = imgToDrag.clone(true)
             .offset({
                 top: imgToDrag.offset().top,
                 left: imgToDrag.offset().left
             })
             .css({
-                'opacity': '0.2',
+                'opacity': '0.5',
                 'position': 'absolute',
                 'height': imgToDrag.height(),
                 'width': imgToDrag.width(),

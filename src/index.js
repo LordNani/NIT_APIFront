@@ -77,6 +77,10 @@ function changeCount(name, quantity) {
     }
 }
 
+$("#checkout-btn").on("click", function () {
+    $("#checkout-form").toggle("show");
+});
+
 $('.clearCart').click(function () {
     clearCart();
     totalSum();
@@ -113,9 +117,9 @@ function generateModal(id) {
     }
     $('#item-modal-container').empty();
     const imageWrapper =
-    jQuery('<div></div>', {
-        "class": "images"
-    });
+        jQuery('<div></div>', {
+            "class": "images"
+        });
     jQuery('<img>', {
         "class": "img-big",
         src: thisItem.image_url
@@ -123,9 +127,9 @@ function generateModal(id) {
     $('#item-modal-container').append(imageWrapper);
 
     const productWrapper =
-    jQuery('<div></div>', {
-        "class": "product"
-    });
+        jQuery('<div></div>', {
+            "class": "product"
+        });
     jQuery('<h1></h1>', {
         "class": "title",
         text: thisItem.name
@@ -154,7 +158,7 @@ function generateModal(id) {
 function clickOnBuy() {
     const nodeCopy = lastNode;
     // console.log(this.className);
-    const imgtodrag = nodeCopy.find('img');
+
     //console.log('clicked on button buy');
     const name = nodeCopy.find(".priceWrapper").data('name');
     const price = Number(nodeCopy.find(".priceWrapper").data('price'));
@@ -190,12 +194,13 @@ function clickOnBuy() {
 
     totalSum();
 
-    //animating the item image flying
-    const width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-    let newcart = $('.open-cart');
-    if (width < 1270)
-        newcart = $('.dropdownIcon');
-    effectBuyItem(newcart, imgtodrag);
+    //animating the item image flying SOMEHOW BROKE IT
+    // const width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+    // let newcart = $('.open-cart');
+    // if (width < 1270)
+    //     newcart = $('.dropdownIcon');
+    // const imgtodrag = lastNode.find("img");
+    //effectBuyItem(newcart, imgtodrag)
 }
 
 $(document).on("click", ".possibleCategory", function () {
@@ -216,15 +221,11 @@ function setCategory(id, name) {
         dataType: "json",
         url: urlToGet,
         success(data) {
-            //console.log(data);
-            //      for (var [key, value] of itemsMap) {
-            //        console.log(key + ' = ' + value.length);
-            //  }
             const items = itemsMap.get(currentCategoryId);
             if (items.length == 0)
                 for (var item of data) {
                     items.push(item);
-                   //  console.log(item.id + "  " + item.name + "   " + item.price);
+                    //  console.log(item.id + "  " + item.name + "   " + item.price);
                 }
             else
                 console.log("Already got data of that category!");
@@ -287,7 +288,7 @@ $(document).on("click", ".minus-count", function () {
     const name = $(this).closest('.card').find('.priceWrapper').data('name');
     //console.log(name);
     const nodeCopy = $(this).closest('.card').clone(true);
-   // console.log(nodeCopy);
+    // console.log(nodeCopy);
     removeOneProduct(nodeCopy, name);
     totalSum();
 });
