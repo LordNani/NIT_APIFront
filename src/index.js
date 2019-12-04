@@ -57,9 +57,12 @@ function clearCart() {
 
 function totalSum() {
     let sum = 0;
+    let totalItems = 0;
     for (var item of cartStorage) {
         sum += item.price * item.count;
+        totalItems += item.count;
     }
+    $('#unique-cart-counter').html(totalItems);
     $('.totalSum').html('Total sum: ' + Number(sum.toFixed(2)) + '$');
 }
 
@@ -89,6 +92,12 @@ $(document).on("click", ".card", function () {
     lastNode = $(this).clone(true);
     if (event.target.classList.contains("btn-buy")) {
         clickOnBuy();
+        const width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+        let newcart = $('.open-cart');
+        if (width < 1270)
+            newcart = $('.dropdownIcon');
+        const imgtodrag = $(this).find("img");
+        effectBuyItem(imgtodrag, newcart);
     } else {
         generateModal(lastNode.data('id'));
         //console.log(lastNode.data('id'));
@@ -185,13 +194,8 @@ function clickOnBuy() {
 
     totalSum();
 
-    //animating the item image flying SOMEHOW BROKE IT
-    // const width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-    // let newcart = $('.open-cart');
-    // if (width < 1270)
-    //     newcart = $('.dropdownIcon');
-    // const imgtodrag = lastNode.find("img");
-    //effectBuyItem(newcart, imgtodrag)
+    // animating the item image flying SOMEHOW BROKE IT
+
 }
 
 $(document).on("click", ".possibleCategory", function () {
