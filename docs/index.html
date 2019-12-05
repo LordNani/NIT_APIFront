@@ -1,127 +1,122 @@
 <!DOCTYPE HTML>
 <html>
 
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href=".\css\index.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
-    <title>Swish-Dish</title>
-</head>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href=".\css\index.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+        <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+        <title>Swish-Dish</title>
+    </head>
 
-<body>
-    <div class="header">
-        <a href="index.html"><img src="img/icon_website.png" class="main-icon"></a>
+    <body>
+        <div class="header">
+            <a href="index.html"><img src="img/icon_website.png" class="main-icon"></a>
 
-        <div class="dropdown category ">
-            <button class="btn btn-dark current-category dropdown-toggle" type="button" id="parentCategory">
-                All Products
-                <span class="caret"></span></button>
-            <ul class=" dropdown-content dropdown-menu scrollable-menu" id="myDropdown1">
-            </ul>
-        </div>
+            <div class="dropdown category ">
+                <button class="btn btn-dark current-category dropdown-toggle" type="button" id="parentCategory">
+                    All Products
+                    <span class="caret"></span></button>
+                <ul class=" dropdown-content dropdown-menu scrollable-menu" id="myDropdown1">
+                </ul>
+            </div>
 
-        <div class='search-wrapper'>
-            <input type="text" placeholder="What are you looking for?" class='searchBar'>
-            <input type="submit" value="FIND" class='btn-search'>
-        </div>
-        <nav class="menuOptions">
-            <button type="button" class="btn btn-primary btn-lg open-cart" data-toggle="modal"
-                data-target="#myModal"><b>Cart</b><span class ="count-cart" id = "unique-cart-counter">0</span></button> <!-- Modal button -->
-            <a href="index.html"><b>Favorites</b></a>
-            <a href="index.html"><b>About</b></a>
-        </nav>
+            <div class='search-wrapper'>
+                <input type="text" placeholder="What are you looking for?" class='searchBar'>
+                <input type="submit" value="FIND" class='btn-search'>
+            </div>
+            <nav class="menuOptions">
+                <button type="button" class="btn btn-primary btn-lg open-cart" data-toggle="modal" data-target="#myModal" id = 'cart-btn'><b>Cart</b><span class="count-cart" id="unique-cart-counter">0</span></button> <!-- Modal button -->
+                <a href="index.html"><b>Favorites</b></a>
+                <a href="index.html"><b>About</b></a>
+            </nav>
 
-        <div class="dropdown menu-show">
-            <img src="img/icon_dd.png" class="dropdownIcon" id="dropdownImage">
-            <div id="myDropdown2" class="dropdown-content">
-                <button type="button" class="btn btn-primary btn-md open-cart" data-toggle="modal"
-                    data-target="#myModal"><b>Shopping Cart</b></button>
-                <a href="index.html">Favorites</a>
-                <a href="index.html">About Us</a>
+            <div class="dropdown menu-show">
+                <img src="img/icon_dd.png" class="dropdownIcon" id="dropdownImage">
+                <div id="myDropdown2" class="dropdown-content">
+                    <button type="button" class="btn btn-primary btn-md open-cart" data-toggle="modal" data-target="#myModal"><b>Shopping Cart</b></button>
+                    <a href="index.html">Favorites</a>
+                    <a href="index.html">About Us</a>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Modal window-->
-    <div id="myModal" class="modal fade " role="dialog">
-        <div class="modal-dialog modal-lg" >
-            <div class="modal-content">
-                <div class="modal-header justify-content-center">
-                    <h4 class="modal-title">Shopping Cart</h4>
-                    <button type="button" class="btn btn-default" data-dismiss="modal"
-                        style="position: absolute;right: 0;top: 0;font-size: 20px;">&#x2716;</button>
+        <!-- Modal window-->
+        <div id="myModal" class="modal fade " role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center">
+                        <h4 class="modal-title">Shopping Cart</h4>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" style="position: absolute;right: 0;top: 0;font-size: 20px;">&#x2716;</button>
 
                         <form class="dropdown-menu p-4" id="checkout-form">
-                                <div class="form-group">
-                                    <label for="form-email">Email address</label>
-                                    <input type="email" class="form-control" id="form-email" placeholder="email@example.com" name = "email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="form-name">Name</label>
-                                    <input type="name" class="form-control" id="form-name" placeholder="Name" name = "name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="form-phone">Phone</label>
-                                    <input type="phone" class="form-control" id="form-phone" placeholder="Phone" name = "phone">
-                                </div>
-                                <button type="submit" class="btn btn-primary" id= "checkout-submit">Send</button>
-                                <span class = "post-message"></span>
-                    
-                            </form>
+                            <div class="form-group">
+                                <label for="form-email">Email address</label>
+                                <input type="email" class="form-control" id="form-email" placeholder="email@example.com" name="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="form-name">Name</label>
+                                <input type="name" class="form-control" id="form-name" placeholder="Name" name="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="form-phone">Phone</label>
+                                <input type="phone" class="form-control" id="form-phone" placeholder="Phone" name="phone">
+                            </div>
+                            <button type="submit" class="btn btn-primary" id="checkout-submit">Send</button>
+                            <span class="post-message"></span>
 
-                </div>
-                <div class="modal-body">
-                    <div class="row justify-content-center" id='cart-container'>
+                        </form>
+
+                    </div>
+                    <div class="modal-body">
+                        <div class="row justify-content-center" id='cart-container'>
+                        </div>
+                    </div>
+                    <div class="modal-footer" style="display:flex;flex-wrap: wrap;justify-content: space-evenly;">
+                        <button type="button" class="btn btn-danger btn-lg clearCart"><b>Clear</b></button>
+                        <h1 class='totalSum'>Total sum: 0.0$</h1>
+                        <button type="button" class="btn btn-success btn-lg checkout" id="checkout-btn"><b>Checkout</b></button>
                     </div>
                 </div>
-                <div class="modal-footer" style="display:flex;flex-wrap: wrap;justify-content: space-evenly;">
-                    <button type="button" class="btn btn-danger btn-lg clearCart"><b>Clear</b></button>
-                    <h1 class='totalSum'>Total sum: 0.0$</h1>
-                    <button type="button" class="btn btn-success btn-lg checkout"
-                        id="checkout-btn"><b>Checkout</b></button>
-                </div>
+
             </div>
-
         </div>
-    </div>
 
-    <div id="itemModal" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-lg " role="document">
-            <div class="modal-content">
-                <div class="modal-body item-container" id="item-modal-container">
+        <div id="itemModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg " role="document">
+                <div class="modal-content">
+                    <div class="modal-body item-container" id="item-modal-container">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
+
             </div>
-
         </div>
-    </div>
 
 
 
-    <div class="items-wrapper container">
-        <div class="row justify-content-center" id="main-row">
+        <div class="items-wrapper container">
+            <div class="row justify-content-center" id="main-row">
 
+            </div>
         </div>
-    </div>
 
-    <footer class="footer mt-auto py-3 blue">
-        <div class="container-fluid text-center ">
-            <span class="text-muted ">All copyright reserved to the Lord Nani</span>
-            <a href=https://t.me/fuckwatermelons target="_blank"> <img src="img/icon_tg2.png"></a>
-        </div>
-    </footer>
+        <footer class="footer mt-auto py-3 blue">
+            <div class="container-fluid text-center ">
+                <span class="text-muted ">All copyright reserved to the Lord Nani</span>
+                <a href=https://t.me/fuckwatermelons target="_blank"> <img src="img/icon_tg2.png"></a>
+            </div>
+        </footer>
 
-    <script type="text/javascript" src=".\js\jquery-3.4.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
-        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous">
-    </script>
-    <script type="text/javascript" src=".\js\index.js"></script>
-    <script type="text/javascript" src=".\js\bootstrap.js"></script>
-    <script type="text/javascript" src=".\js\jquery-ui-1.12.1\jquery-ui.min.js"></script>
-</body>
+        <script type="text/javascript" src=".\js\jquery-3.4.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous">
+        </script>
+        <script type="text/javascript" src=".\js\index.js"></script>
+        <script type="text/javascript" src=".\js\bootstrap.js"></script>
+        <script type="text/javascript" src=".\js\jquery-ui-1.12.1\jquery-ui.min.js"></script>
+    </body>
 
 
 </html>

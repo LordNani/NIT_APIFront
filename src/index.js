@@ -92,9 +92,9 @@ $(document).on("click", ".card", function () {
     lastNode = $(this).clone(true);
     if (event.target.classList.contains("btn-buy")) {
         clickOnBuy();
-        const width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+
         let newcart = $('.open-cart');
-        if (width < 1270)
+        if (getWidth() < 1270)
             newcart = $('.dropdownIcon');
         const imgtodrag = $(this).find("img");
         effectBuyItem(imgtodrag, newcart);
@@ -319,6 +319,8 @@ $(document).on("click", function () {
 
 
 window.onload = function () {
+
+
     $.get({
         dataType: "json",
         url: "https://nit.tron.net.ua/api/category/list",
@@ -343,6 +345,23 @@ window.onload = function () {
         }
 
     });
+
+    const itemCounter = $('#unique-cart-counter').detach();
+    if (getWidth() < 1270) {
+        itemCounter.insertAfter($('#dropdownImage'));
+        console.log(itemCounter);
+    } else
+        itemCounter.appendTo($('#cart-btn'));
+
+}
+
+window.onresize = function () {
+    const itemCounter = $('#unique-cart-counter').detach();
+    if (getWidth() < 1270) {
+        itemCounter.insertAfter($('#dropdownImage'));
+        console.log(itemCounter);
+    } else
+        itemCounter.appendTo($('#cart-btn'));
 }
 
 $("#checkout-btn").on("click", function () {
@@ -380,9 +399,16 @@ function postMessage(message) {
     $('.post-message').empty();
     if (message == 'Order created') {
         $('.post-message')[0].style.backgroundColor = "#63c550";
-        setTimeout(function(){$("#checkout-form").toggle("show")}, 2000);
+        setTimeout(function () {
+            $("#checkout-form").toggle("show")
+        }, 2000);
     } else {
         $('.post-message')[0].style.backgroundColor = "#ee2336";
     }
     $('.post-message').html(message);
+}
+
+
+function getWidth() {
+    return (window.innerWidth > 0) ? window.innerWidth : screen.width;
 }
